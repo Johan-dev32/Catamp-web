@@ -30,3 +30,65 @@ footer {
   text-align: center;
   padding: 20px;
 }
+
+/* Animación de entrada para el header */
+header h1 {
+  animation: fadeInDown 2s ease;
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Hover en el menú */
+nav ul li a {
+  transition: color 0.3s ease;
+}
+
+nav ul li a:hover {
+  color: #ff6600;
+}
+
+.btn-contacto {
+  background: #ff6600;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.btn-contacto:hover {
+  transform: scale(1.1);
+  background: #cc5200;
+}
+
+.galeria {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.proyecto {
+  width: 300px;
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.proyecto img {
+  width: 100%;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+}
+
+.proyecto:hover {
+  transform: scale(1.05);
+}

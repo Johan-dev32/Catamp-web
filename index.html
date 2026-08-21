@@ -6,6 +6,12 @@
   <title>CATAMP S.A.S - Ingeniería y Obra Civil</title>
   <link rel="stylesheet" href="styles.css">
 </head>
+<style>
+  html {
+    scroll-behavior: smooth;
+  }
+</style>
+
 <body>
   <header>
     <h1>CATAMP S.A.S</h1>
@@ -37,16 +43,31 @@
     </ul>
   </section>
 
-  <section id="portafolio">
-    <h2>Portafolio</h2>
-    <p>Proyectos residenciales, comerciales e industriales realizados en Bogotá y Colombia.</p>
-  </section>
+<section id="portafolio">
+  <h2>Portafolio</h2>
+  <div class="galeria">
+    <div class="proyecto">
+      <img src="img/residencial1.jpg" alt="Proyecto Residencial">
+      <p>Proyecto Residencial - Bogotá</p>
+    </div>
+    <div class="proyecto">
+      <img src="img/comercial1.jpg" alt="Proyecto Comercial">
+      <p>Proyecto Comercial - Oficinas</p>
+    </div>
+    <div class="proyecto">
+      <img src="img/industrial1.jpg" alt="Proyecto Industrial">
+      <p>Proyecto Industrial - Planta</p>
+    </div>
+  </div>
+</section>
 
   <footer id="contacto">
+    <button class="btn-contacto">Agendar Visita Técnica</button>
     <h2>Contacto</h2>
     <p>Tel: +57 311 846 87 07 | +57 321 330 17 25</p>
     <p>Email: catampingenieriaobracivil@gmail.com</p>
     <p>Dirección: Carrera 121 c # 128 b - 88, Bogotá, Colombia</p>
   </footer>
 </body>
+<script src="script.js"></script>
 </html>
