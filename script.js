@@ -6,6 +6,8 @@ const mensajes = [
   "Cumplimiento, calidad técnica e innovación"
 ];
 const proyectos = document.querySelectorAll(".proyecto img");
+const form = document.getElementById("contact-form");
+
 
 let i = 0;
 setInterval(() => {
@@ -17,4 +19,10 @@ proyectos.forEach(img => {
   img.addEventListener("click", () => {
     alert("Este proyecto pertenece al portafolio de CATAMP S.A.S");
   });
+});
+
+form.addEventListener("submit", function(event) {
+  event.preventDefault(); // Evita recargar la página
+  alert("Gracias por contactarnos, pronto te responderemos.");
+  form.reset(); // Limpia el formulario
 });
