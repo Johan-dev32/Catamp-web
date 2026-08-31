@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>CATAMP S.A.S. | Ingeniería y Obra Civil</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}" />
+  </head>
+
+  <body>
+    <header class="header">
+      <div class="container nav">
+        <a href="#inicio" class="logo" aria-label="CATAMP S.A.S."><img src="{{ url_for('static', filename='img/Logo3.png') }}" alt="CATAMP S.A.S. - Ingeniería y Obra Civil" /></a>
+
+        <nav class="navigation" aria-label="Navegación principal">
+          <a href="#inicio">Inicio</a>
+          <a href="#nosotros">Nosotros</a>
+          <a href="#servicios">Servicios</a>
+          <a href="#experiencia">Experiencia</a>
+          <a href="#contacto">Contacto</a>
+        </nav>
+
+        <a href="#contacto" class="btn btn-primary">Solicitar visita</a>
+      </div>
+    </header>
+
+    <main>
+      <!-- HERO -->
+
+      <section id="inicio" class="hero">
+        <div class="container hero-content">
+          <div class="hero-text">
+            <span class="eyebrow">INGENIERÍA Y OBRA CIVIL</span>
+
+            <h1>
+              La ingeniería que transforma tus proyectos en
+              <span>soluciones confiables.</span>
+            </h1>
+
+            <p>Ejecutamos proyectos de ingeniería civil con excelencia, responsabilidad y calidad técnica.</p>
+
+            <div class="hero-actions">
+              <a href="#servicios" class="btn btn-primary">Conocer servicios</a>
+
+              <a href="#contacto" class="btn btn-secondary">Contáctanos</a>
+            </div>
+          </div>
+
+          <div class="hero-card">
+            <div class="experience-number">6+</div>
+
+            <p>Años construyendo confianza en Colombia</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- NOSOTROS -->
+
+      <section id="nosotros" class="section">
+        <div class="container">
+          <div class="section-heading">
+            <span class="eyebrow">QUIÉNES SOMOS</span>
+
+            <h2>Ingeniería con experiencia, responsabilidad y confianza.</h2>
+          </div>
+
+          <div class="about-grid">
+            <div class="about-text">
+              <p>CATAMP S.A.S. es una empresa especializada en ingeniería civil, enfocada en la ejecución de proyectos comerciales, residenciales e industriales en Bogotá y Colombia.</p>
+
+              <p>Nos caracterizamos por el cumplimiento, la calidad técnica y la responsabilidad en cada obra, ofreciendo soluciones confiables y eficientes.</p>
+            </div>
+
+            <div class="stats">
+              <div class="stat">
+                <strong>6+</strong>
+                <span>Años de experiencia</span>
+              </div>
+
+              <div class="stat">
+                <strong>100%</strong>
+                <span>Cumplimiento normativo</span>
+              </div>
+
+              <div class="stat">
+                <strong>3</strong>
+                <span>Sectores atendidos</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SERVICIOS -->
+
+      <section id="servicios" class="section section-dark">
+        <div class="container">
+          <div class="section-heading">
+            <span class="eyebrow">NUESTROS SERVICIOS</span>
+
+            <h2>Soluciones integrales en ingeniería civil.</h2>
+          </div>
+
+          <div class="services-grid">
+            <article class="service-card service-obra">
+              <div class="service-overlay">
+                <span>01</span>
+                <div>
+                  <h3>Obra Nueva</h3>
+                  <p>Construcción de proyectos desde la fase inicial, asegurando procesos técnicos adecuados y cumplimiento de la normatividad vigente.</p>
+                  <a href="#contacto">Solicitar servicio →</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="service-card service-acabados">
+              <div class="service-overlay">
+                <span>02</span>
+                <div>
+                  <h3>Acabados Especializados</h3>
+                  <p>Soluciones de acabado que combinan estética, precisión y durabilidad.</p>
+                  <a href="#contacto">Solicitar servicio →</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="service-card service-mantenimiento">
+              <div class="service-overlay">
+                <span>03</span>
+                <div>
+                  <h3>Mantenimientos</h3>
+                  <p>Mantenimientos preventivos y correctivos para preservar la vida útil de instalaciones y estructuras.</p>
+                  <a href="#contacto">Solicitar servicio →</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="service-card service-remodelacion">
+              <div class="service-overlay">
+                <span>04</span>
+                <div>
+                  <h3>Remodelaciones Técnicas</h3>
+                  <p>Transformación y renovación de espacios residenciales, comerciales e industriales.</p>
+                  <a href="#contacto">Solicitar servicio →</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="service-card service-supervision">
+              <div class="service-overlay">
+                <span>05</span>
+                <div>
+                  <h3>Supervisión de Obras</h3>
+                  <p>Control técnico integral durante cada etapa del proceso constructivo.</p>
+                  <a href="#contacto">Solicitar servicio →</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="service-card service-diseno">
+              <div class="service-overlay">
+                <span>06</span>
+                <div>
+                  <h3>Diseño y Asesoría</h3>
+                  <p>Diseños constructivos y orientación profesional para optimizar recursos y decisiones técnicas.</p>
+                  <a href="#contacto">Solicitar servicio →</a>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- VISITAS TÉCNICAS -->
+
+      <section class="technical-section">
+        <div class="container">
+          <div class="technical-header">
+            <div>
+              <span class="eyebrow">VISITAS TÉCNICAS</span>
+
+              <h2>Inspección profesional y diagnóstico en obra.</h2>
+            </div>
+
+            <p>Evaluamos el estado real de sus estructuras, instalaciones y acabados directamente en campo, proporcionando un diagnóstico técnico para orientar las decisiones de intervención.</p>
+          </div>
+
+          <div class="technical-grid">
+            <article class="technical-card">
+              <span>01</span>
+              <div>
+                <h3>Inspección profesional</h3>
+                <p>Evaluamos las condiciones reales de la estructura, instalaciones y acabados directamente en campo.</p>
+              </div>
+            </article>
+
+            <article class="technical-card">
+              <span>02</span>
+              <div>
+                <h3>Control de calidad</h3>
+                <p>Verificamos especificaciones técnicas, procesos constructivos y cumplimiento de la normativa NSR-10.</p>
+              </div>
+            </article>
+
+            <article class="technical-card">
+              <span>03</span>
+              <div>
+                <h3>Patologías constructivas</h3>
+                <p>Identificamos fisuras, humedades, fallas estructurales y deterioros que requieren intervención.</p>
+              </div>
+            </article>
+
+            <article class="technical-card">
+              <span>04</span>
+              <div>
+                <h3>Informe y plan de acción</h3>
+                <p>Entregamos hallazgos, fotografías, recomendaciones y presupuesto estimado de intervención.</p>
+              </div>
+            </article>
+          </div>
+
+          <div class="technical-action">
+            <div>
+              <strong>¿Necesitas evaluar una obra?</strong>
+              <p>Agenda una visita técnica con nuestro equipo.</p>
+            </div>
+
+            <a href="#contacto" class="btn btn-primary">Agendar visita</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- EXPERIENCIA -->
+
+      <section id="experiencia" class="section">
+        <div class="container">
+          <div class="section-heading">
+            <span class="eyebrow">NUESTRA EXPERIENCIA</span>
+
+            <h2>Proyectos para diferentes sectores.</h2>
+          </div>
+
+          <div class="sectors-grid">
+            <article class="sector">
+              <h3>Residencial</h3>
+              <p>Proyectos de vivienda y conjuntos.</p>
+            </article>
+
+            <article class="sector">
+              <h3>Comercial</h3>
+              <p>Locales, oficinas y áreas comunes.</p>
+            </article>
+
+            <article class="sector">
+              <h3>Industrial</h3>
+              <p>Plantas y estructuras industriales.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- POR QUÉ ELEGIRNOS -->
+
+      <section class="why-section">
+        <div class="container">
+          <div class="why-header">
+            <div>
+              <span class="eyebrow">¿POR QUÉ ELEGIRNOS?</span>
+
+              <h2>Razones para confiar en CATAMP S.A.S.</h2>
+            </div>
+
+            <p>Trabajamos para entregar soluciones confiables, con acompañamiento técnico y comunicación clara durante cada etapa del proyecto.</p>
+          </div>
+
+          <div class="why-grid">
+            <article class="why-card">
+              <span class="why-number">01</span>
+              <div>
+                <h3>Cumplimiento Garantizado</h3>
+                <p>Entregamos cada proyecto en los plazos y condiciones pactadas, manteniendo claridad durante el proceso.</p>
+              </div>
+            </article>
+
+            <article class="why-card">
+              <span class="why-number">02</span>
+              <div>
+                <h3>Equipo Profesional</h3>
+                <p>Ingenieros, maestros y personal calificado con experiencia comprobada en obra.</p>
+              </div>
+            </article>
+
+            <article class="why-card">
+              <span class="why-number">03</span>
+              <div>
+                <h3>Calidad y Normatividad</h3>
+                <p>Trabajamos bajo la normativa NSR-10 y con materiales certificados de alta durabilidad.</p>
+              </div>
+            </article>
+
+            <article class="why-card">
+              <span class="why-number">04</span>
+              <div>
+                <h3>Asesoría Técnica</h3>
+                <p>Ofrecemos diagnóstico en campo, informes detallados y acompañamiento desde el inicio del proyecto.</p>
+              </div>
+            </article>
+
+            <article class="why-card">
+              <span class="why-number">05</span>
+              <div>
+                <h3>Transparencia y Confianza</h3>
+                <p>Comunicación clara, presupuestos detallados y honestidad en cada etapa de la obra.</p>
+              </div>
+            </article>
+
+            <article class="why-card why-card-highlight">
+              <span class="why-number">06</span>
+              <div>
+                <h3>Garantía y Respaldo</h3>
+                <p>Garantía y acompañamiento técnico conforme al alcance de cada proyecto.</p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- CONTACTO -->
+
+      <section id="contacto" class="contact-section">
+        <div class="container contact-content">
+          <div>
+            <span class="eyebrow">CONTÁCTANOS</span>
+
+            <h2>Estamos listos para acompañarte en tu próximo proyecto.</h2>
+          </div>
+
+          <div class="contact-info">
+            <p>
+              <strong>Teléfonos</strong><br />
+              +57 311 846 87 07<br />
+              +57 321 330 17 25
+            </p>
+
+            <p>
+              <strong>Correo</strong><br />
+              catampingenieriaobracivil@gmail.com
+            </p>
+
+            <p>
+              <strong>Ubicación</strong><br />
+              Bogotá, Colombia
+            </p>
+
+            <button id="btnAbrirModal" class="btn btn-primary" style="margin-top: 15px; cursor: pointer; border: none;">Enviar Mensaje Directo</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- VENTANA MODAL DEL FORMULARIO -->
+      <div id="modalContacto" class="modal-overlay">
+        <div class="modal-content">
+          <button id="btnCerrarModal" class="modal-close">&times;</button>
+
+          <h3>Solicitar Cotización</h3>
+          <p>Déjanos tus datos y nos pondremos en contacto a la brevedad</p>
+
+          <form id="formContacto" class="modal-form">
+            <input type="text" id="nombre" placeholder="Nombre completo *" required />
+            <input type="email" id="correo" placeholder="Correo electrónico" />
+            <input type="tel" id="telefono" placeholder="Teléfono / Celular *" required />
+            <textarea id="mensaje" rows="4" placeholder="Escribe tu mensaje o detalle del proyecto *" required></textarea>
+
+            <button type="submit" class="btn btn-primary">Enviar Solicitud</button>
+          </form>
+        </div>
+      </div>
+
+      <!-- BOTÓN FLOTANTE DE WHATSAPP -->
+      <a href="https://wa.me/573118468707?text=Hola,%20quisiera%20recibir%20más%20información%20sobre%20sus%20servicios%20de%20ingeniería" class="whatsapp-btn" target="_blank" rel="noopener noreferrer" aria-label="Contactar por WhatsApp">
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 21l1.65-3.8a9 9 0 1 1 3.4 2.9L3 21" />
+          <path d="M9 10a0.5.5 0 0 0 1 0V9a0.5.5 0 0 0-1 0v1a5 5 0 0 0 5 5h1a0.5.5 0 0 0 0-1h-1a0.5.5 0 0 0 0 1" />
+        </svg>
+      </a>
+      
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>© 2026 CATAMP S.A.S. — Ingeniería y Obra Civil</p>
+      </div>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+  </body>
+</html>
