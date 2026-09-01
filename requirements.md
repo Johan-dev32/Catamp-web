@@ -17,9 +17,9 @@
 
 ## 3. Requerimientos Técnicos
 - Frontend: HTML5, CSS3, JavaScript (React opcional).
-- Backend: Node.js con Express.
-- Base de datos: MongoDB o PostgreSQL.
-- Hosting: GitHub Pages (frontend) + Render/Heroku (backend).
+- Backend: Python, Flask, SQLAlchemy.
+- Base de datos: SQLite.
+- Hosting: Render (Back-End y Front-End).
 - Control de versiones: GitHub con ramas organizadas (main, dev, feature).
 
 ## 4. Extras

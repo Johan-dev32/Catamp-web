@@ -15,5 +15,5 @@ Este proyecto corresponde al desarrollo del sistema web corporativo de **CATAMP 
 
 ## Tecnologías
 - Frontend: HTML5, CSS3, JavaScript.
-- Backend: Node.js con Express.
-- Base de datos: MongoDB o PostgreSQL.
+- Backend: Python, Flask, SQLAlchemy.
+- Base de datos: SQLite.

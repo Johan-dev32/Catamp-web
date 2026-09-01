@@ -40,6 +40,29 @@ window.addEventListener("scroll", () => {
 
 });
 
+// CONTROL DEL MENÚ HAMBURGUESA //
+
+const btnMenu = document.getElementById('btnMenu');
+const navMenu = document.getElementById('navMenu');
+const navLinks = document.querySelectorAll('.navigation a');
+
+if (btnMenu && navMenu) {
+    // Toggle para abrir/cerrar
+    btnMenu.addEventListener('click', () => {
+        btnMenu.classList.toggle('active');
+        navMenu.classList.toggle('active');
+    });
+
+    // Cerrar el menú al hacer clic en cualquier enlace del menú
+    navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            btnMenu.classList.remove('active');
+            navMenu.classList.remove('active');
+        });
+    });
+}
+
+
 // ENVÍO DEL FORMULARIO DE CONTACTO A FLASK //
 
 document.addEventListener('DOMContentLoaded', () => {

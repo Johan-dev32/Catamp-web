@@ -14,13 +14,20 @@
       <div class="container nav">
         <a href="#inicio" class="logo" aria-label="CATAMP S.A.S."><img src="{{ url_for('static', filename='img/Logo3.png') }}" alt="CATAMP S.A.S. - Ingeniería y Obra Civil" /></a>
 
-        <nav class="navigation" aria-label="Navegación principal">
-          <a href="#inicio">Inicio</a>
-          <a href="#nosotros">Nosotros</a>
-          <a href="#servicios">Servicios</a>
-          <a href="#experiencia">Experiencia</a>
-          <a href="#contacto">Contacto</a>
-        </nav>
+        <!-- BOTÓN HAMBURGUESA AGREGADO -->
+            <button class="hamburger-btn" id="btnMenu" aria-label="Abrir menú">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <nav class="navigation" id="navMenu" aria-label="Navegación principal">
+                <a href="#inicio">Inicio</a>
+                <a href="#nosotros">Nosotros</a>
+                <a href="#servicios">Servicios</a>
+                <a href="#experiencia">Experiencia</a>
+                <a href="#contacto">Contacto</a>
+            </nav>
 
         <a href="#contacto" class="btn btn-primary">Solicitar visita</a>
       </div>
@@ -385,7 +392,7 @@
           <path d="M9 10a0.5.5 0 0 0 1 0V9a0.5.5 0 0 0-1 0v1a5 5 0 0 0 5 5h1a0.5.5 0 0 0 0-1h-1a0.5.5 0 0 0 0 1" />
         </svg>
       </a>
-      
+
     </main>
 
     <footer class="footer">
