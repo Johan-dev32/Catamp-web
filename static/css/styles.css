@@ -524,99 +524,120 @@ img {
 
 .technical-section {
     padding: 110px 0;
-
-    background: #EEF1F4;
+    background: var(--dark);
+    color: var(--white);
 }
 
 .technical-header {
     display: grid;
-
     grid-template-columns: 1fr 0.7fr;
-
     gap: 80px;
-
     align-items: end;
-
     margin-bottom: 60px;
 }
 
 .technical-header h2 {
     max-width: 700px;
-
     margin-top: 15px;
-
     font-size: clamp(2.3rem, 5vw, 4.5rem);
-
     line-height: 1;
 }
 
 .technical-header>p {
-    color: var(--text-light);
+    color: #E2E8F0;
     font-size: 1rem;
 }
 
+/* ==========================================
+   VISITAS TÉCNICAS (Estilo Grid de Servicios)
+   ========================================== */
+
 .technical-grid {
-    display: grid;
-
-    grid-template-columns: repeat(4, 1fr);
-
-    border-top: 1px solid #D1D7DE;
-    border-bottom: 1px solid #D1D7DE;
+    display: grid !important;
+    grid-template-columns: repeat(4, 1fr) !important;
+    gap: 2px !important;
+    background: var(--catamp-blue-dark) !important;
 }
 
 .technical-card {
-    min-height: 320px;
-
-    padding: 30px;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-
-    border-right: 1px solid #D1D7DE;
-
-    transition: 0.3s ease;
+    position: relative !important;
+    min-height: 420px !important;
+    overflow: hidden !important;
+    background-size: cover !important;
+    background-position: center !important;
+    transition: 0.4s ease !important;
+    border: none !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
 }
 
-.technical-card:last-child {
-    border-right: none;
+.technical-card::before {
+    content: "" !important;
+    position: absolute !important;
+    inset: 0 !important;
+    background: linear-gradient(
+        to top,
+        rgba(6, 22, 47, 0.96),
+        rgba(6, 22, 47, 0.18)
+    ) !important;
+    transition: 0.4s ease !important;
+    z-index: 1 !important;
 }
 
-.technical-card>span {
-    color: var(--catamp-orange);
+.technical-card:hover::before {
+    background: linear-gradient(
+        to top,
+        rgba(13, 47, 129, 0.95),
+        rgba(0, 181, 226, 0.18)
+    ) !important;
+}
 
-    font-size: 0.8rem;
-    font-weight: 700;
+.technical-card .card-overlay {
+    position: relative !important;
+    z-index: 2 !important;
+    height: 100% !important;
+    padding: 30px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+    color: var(--white) !important;
+}
+
+.technical-card .card-overlay > span {
+    font-size: 0.8rem !important;
+    font-weight: 700 !important;
+    color: var(--catamp-yellow) !important;
 }
 
 .technical-card h3 {
-    margin-bottom: 15px;
-    font-size: 1.3rem;
+    margin-bottom: 12px !important;
+    font-size: 1.5rem !important;
+    color: var(--white) !important;
 }
 
 .technical-card p {
-    color: var(--text-light);
-    font-size: 0.9rem;
+    max-width: 350px !important;
+    margin-bottom: 20px !important;
+    color: #E2E8F0 !important;
+    font-size: 0.9rem !important;
 }
 
-.technical-card:hover {
-    background: var(--white);
-    transform: translateY(-5px);
-}
+/* Rutas de imágenes */
+.tech-card-inspeccion { background-image: url("../img/Inspección\ profesional.png") !important; }
+.tech-card-calidad    { background-image: url("../img/Control\ de\ calidad.png") !important; }
+.tech-card-patologias { background-image: url("../img/Patologías\ constructivas.png") !important; }
+.tech-card-informe    { background-image: url("../img/Informe\ y\ plan\ de\ acción.png") !important; }
 
 .technical-action {
     margin-top: 50px;
-
     padding: 30px;
-
     display: flex;
     align-items: center;
     justify-content: space-between;
-
     gap: 30px;
-
     background: var(--catamp-blue-dark);
     color: var(--white);
+    border-radius: 8px;
 }
 
 .technical-action strong {
@@ -634,141 +655,192 @@ img {
 /* SECTORS */
 
 .sectors-grid {
-    display: grid;
-
-    grid-template-columns: repeat(3, 1fr);
-
-    gap: 25px;
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 2px !important;
+    background: var(--catamp-blue-dark) !important;
 }
 
 .sector {
-    min-height: 300px;
-
-    padding: 35px;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-
-    background: var(--white);
-
-    border: 1px solid var(--border);
-
-    transition: 0.3s ease;
+    position: relative !important;
+    min-height: 420px !important;
+    overflow: hidden !important;
+    background-size: cover !important;
+    background-position: center !important;
+    transition: 0.4s ease !important;
+    border: none !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
 }
 
-.sector:hover {
-    transform: translateY(-8px);
-    border-color: var(--catamp-yellow);
-    box-shadow: 0 15px 30px rgba(7, 26, 67, 0.08);
+.sector::before {
+    content: "" !important;
+    position: absolute !important;
+    inset: 0 !important;
+    background: linear-gradient(
+        to top,
+        rgba(6, 22, 47, 0.96),
+        rgba(6, 22, 47, 0.18)
+    ) !important;
+    transition: 0.4s ease !important;
+    z-index: 1 !important;
+}
+
+.sector:hover::before {
+    background: linear-gradient(
+        to top,
+        rgba(13, 47, 129, 0.95),
+        rgba(0, 181, 226, 0.18)
+    ) !important;
+}
+
+.sector-overlay {
+    position: relative !important;
+    z-index: 2 !important;
+    height: 100% !important;
+    padding: 30px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+    color: var(--white) !important;
 }
 
 .sector h3 {
-    font-size: 2rem;
-    margin-bottom: 10px;
+    margin-bottom: 12px !important;
+    font-size: 1.5rem !important;
+    color: var(--white) !important;
 }
 
 .sector p {
-    color: var(--text-light);
+    max-width: 350px !important;
+    margin-bottom: 20px !important;
+    color: #E2E8F0 !important;
+    font-size: 0.9rem !important;
 }
+
+.sector-link {
+    display: inline-block !important;
+    color: var(--catamp-yellow) !important;
+    font-size: 0.85rem !important;
+    font-weight: 700 !important;
+    transition: 0.3s ease !important;
+}
+
+.sector-link:hover {
+    color: var(--white) !important;
+}
+
+/* Rutas de imágenes */
+.sector-residencial { background-image: url("../img/Foto_Residencial.jpeg") !important; }
+.sector-comercial   { background-image: url("../img/Foto_Comercial.png") !important; }
+.sector-industrial  { background-image: url("../img/Foto_Industrial.jpeg") !important; }
 
 
 /* PORQUE ELEGIRNOS */
 
 .why-section {
     padding: 110px 0;
-    background: var(--white);
+    background: var(--dark);
+    color: var(--white);
 }
 
 .why-header {
     display: grid;
-
     grid-template-columns: 1fr 0.7fr;
-
     gap: 80px;
-
     align-items: end;
-
     margin-bottom: 60px;
 }
 
 .why-header h2 {
     max-width: 700px;
-
     margin-top: 15px;
-
     font-size: clamp(2.3rem, 5vw, 4.5rem);
-
     line-height: 1;
 }
 
 .why-header>p {
-    color: var(--text-light);
+    color: #E2E8F0;
     font-size: 1rem;
 }
 
 .why-grid {
-    display: grid;
-
-    grid-template-columns: repeat(3, 1fr);
-
-    border-top: 1px solid var(--border);
-    border-left: 1px solid var(--border);
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 2px !important;
+    background: var(--catamp-blue-dark) !important;
 }
 
 .why-card {
-    min-height: 300px;
-
-    padding: 30px;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-
-    border-right: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
-
-    transition: 0.3s ease;
+    position: relative !important;
+    min-height: 420px !important;
+    overflow: hidden !important;
+    background-size: cover !important;
+    background-position: center !important;
+    transition: 0.4s ease !important;
+    border: none !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
 }
 
-.why-card:hover {
-    background: var(--light);
-    transform: translateY(-5px);
+.why-card::before {
+    content: "" !important;
+    position: absolute !important;
+    inset: 0 !important;
+    background: linear-gradient(
+        to top,
+        rgba(6, 22, 47, 0.96),
+        rgba(6, 22, 47, 0.18)
+    ) !important;
+    transition: 0.4s ease !important;
+    z-index: 1 !important;
+}
+
+.why-card:hover::before {
+    background: linear-gradient(
+        to top,
+        rgba(13, 47, 129, 0.95),
+        rgba(0, 181, 226, 0.18)
+    ) !important;
+}
+
+.why-card .card-overlay {
+    position: relative !important;
+    z-index: 2 !important;
+    height: 100% !important;
+    padding: 30px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+    color: var(--white) !important;
 }
 
 .why-number {
-    color: var(--catamp-orange);
-
-    font-size: 0.8rem;
-    font-weight: 700;
+    font-size: 0.8rem !important;
+    font-weight: 700 !important;
+    color: var(--catamp-yellow) !important;
 }
 
 .why-card h3 {
-    margin-bottom: 15px;
-    font-size: 1.3rem;
+    margin-bottom: 12px !important;
+    font-size: 1.5rem !important;
+    color: var(--white) !important;
 }
 
 .why-card p {
-    color: var(--text-light);
-    font-size: 0.9rem;
+    max-width: 350px !important;
+    margin-bottom: 20px !important;
+    color: #E2E8F0 !important;
+    font-size: 0.9rem !important;
 }
 
-.why-card-highlight {
-    background: var(--catamp-blue-dark);
-    color: var(--white);
-}
-
-.why-card-highlight .why-number {
-    color: var(--catamp-yellow);
-}
-
-.why-card-highlight p {
-    color: #AEB9CA;
-}
-
-.why-card-highlight:hover {
-    background: var(--catamp-blue);
-}
+/* Rutas de imágenes */
+.why-cumplimiento { background-image: url("../img/Cumplimiento\ Garantizado.png") !important; }
+.why-equipo       { background-image: url("../img/Equipo\ Profesional.png") !important; }
+.why-calidad      { background-image: url("../img/Calidad\ y\ Normatividad.png") !important; }
+.why-asesoria     { background-image: url("../img/Asesoría\ Técnica.png") !important; }
+.why-confianza    { background-image: url("../img/Transparencia\ y\ Confianza.png") !important; }
+.why-garantia     { background-image: url("../img/Garantía\ y\ Respaldo.png") !important; }
 
 
 /* CONTACT */
@@ -854,17 +926,22 @@ img {
 
 .modal-content {
     position: relative;
-    width: min(90%, 480px);
-    padding: 35px;
+    width: min(90%, 420px);
+    height: fit-content !important;
+    min-height: auto !important;
+    padding: 35px 28px;
 
-    background: var(--dark-soft);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    border-radius: 12px;
-    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
+    background: #0B1B3D;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 16px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
 
     color: var(--white);
     transform: translateY(-20px);
     transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .modal-overlay.active .modal-content {
@@ -902,6 +979,15 @@ img {
     gap: 14px;
 }
 
+#contactForm.hidden,
+.modal-form.hidden {
+    display: none !important;
+    height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+}
+
 .modal-form input,
 .modal-form textarea {
     width: 100%;
@@ -928,6 +1014,79 @@ img {
     cursor: pointer;
     border: none;
     width: 100%;
+}
+
+.status-message {
+    text-align: center;
+    padding: 10px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    animation: fadeInStatus 0.4s ease-in-out;
+}
+
+.status-message.hidden {
+    display: none !important;
+}
+
+.status-icon {
+    width: 60px;
+    height: 60px;
+    background: var(--catamp-yellow);
+    color: #06162f;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    font-weight: bold;
+    box-shadow: 0 4px 16px rgba(253, 185, 19, 0.35);
+}
+
+.status-message h3 {
+    color: #FFFFFF !important;
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin: 0;
+}
+
+.status-message p {
+    color: #C0CCE0 !important;
+    font-size: 0.92rem;
+    line-height: 1.45;
+    max-width: 320px;
+    margin: 0;
+}
+
+.btn-status {
+    background-color: var(--catamp-yellow);
+    color: #06162F !important;
+    border: none;
+    padding: 10px 28px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    margin-top: 6px;
+}
+
+.btn-status:hover {
+    background-color: var(--catamp-orange);
+    color: #FFFFFF !important;
+}
+
+@keyframes fadeInStatus {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 /* BOTÓN FLOTANTE WHATSAPP */

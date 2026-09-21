@@ -31,14 +31,13 @@ animatedElements.forEach((element) => {
 const header = document.querySelector(".header");
 
 window.addEventListener("scroll", () => {
-
     if (window.scrollY > 50) {
         header.classList.add("header-scrolled");
     } else {
         header.classList.remove("header-scrolled");
     }
-
 });
+
 
 // CONTROL DEL MENÚ HAMBURGUESA //
 
@@ -63,67 +62,51 @@ if (btnMenu && navMenu) {
 }
 
 
-// ENVÍO DEL FORMULARIO DE CONTACTO A FLASK //
-
-document.addEventListener('DOMContentLoaded', () => {
-    const formContacto = document.getElementById('formContacto');
-
-    if (formContacto) {
-        formContacto.addEventListener('submit', async (e) => {
-            e.preventDefault();
-
-            const datos = {
-                nombre: document.getElementById('nombre').value,
-                correo: document.getElementById('correo').value,
-                telefono: document.getElementById('telefono').value,
-                mensaje: document.getElementById('mensaje').value
-            };
-
-            try {
-                const response = await fetch('/api/contacto', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(datos)
-                });
-
-                const resultado = await response.json();
-
-                if (response.ok) {
-                    alert(resultado.message);
-                    formContacto.reset();
-                } else {
-                    alert('Error: ' + resultado.message);
-                }
-            } catch (error) {
-                alert('Ocurrió un error al enviar tú solicitud. Inténtalo de nuevo.');
-            }
-        });
-    }
-});
-
-
-// CONTROL DE LA VENTANA MODAL //
+// CONTROL DE LA VENTANA MODAL Y ENVÍO DE FORMULARIO //
 
 document.addEventListener('DOMContentLoaded', () => {
     const modal = document.getElementById('modalContacto');
-    const btnAbrir = document.getElementById('btnAbrirModal');
+    const modalFormBody = document.getElementById('modalFormBody');
     const btnCerrar = document.getElementById('btnCerrarModal');
     const formContacto = document.getElementById('formContacto');
+    const mensajeEstado = document.getElementById('mensajeEstado');
+    const btnCerrarEstado = document.getElementById('btnCerrarEstado');
 
-    // Abrir modal con botón de contacto y botón de navbar ("Solicitar visita")
+    // Abrir modal
     const btnsAbrirModal = document.querySelectorAll('#btnAbrirModal, .btn[href="#contacto"]');
 
     btnsAbrirModal.forEach(btn => {
         btn.addEventListener('click', (e) => {
             e.preventDefault();
-            modal.classList.add('active');
+            if (modal) modal.classList.add('active');
         });
     });
 
-    // Cerrar con la X
+    // Función auxiliar para resetear la vista del modal al cerrarse
+    const resetearVistaModal = () => {
+        if (modalFormBody && mensajeEstado) {
+            modalFormBody.style.display = 'block'; // Muestra el cuerpo del formulario
+            mensajeEstado.classList.add('hidden'); // Oculta el mensaje de éxito
+        }
+    };
+
+    // Cerrar modal con la X
     if (btnCerrar) {
         btnCerrar.addEventListener('click', () => {
-            modal.classList.remove('active');
+            if (modal) {
+                modal.classList.remove('active');
+                setTimeout(resetearVistaModal, 300);
+            }
+        });
+    }
+
+    // Cerrar con el botón "Aceptar" del mensaje de éxito
+    if (btnCerrarEstado) {
+        btnCerrarEstado.addEventListener('click', () => {
+            if (modal) {
+                modal.classList.remove('active');
+                setTimeout(resetearVistaModal, 300);
+            }
         });
     }
 
@@ -131,13 +114,27 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('click', (e) => {
         if (e.target === modal) {
             modal.classList.remove('active');
+            setTimeout(resetearVistaModal, 300);
         }
     });
 
-    // Envío del formulario a Flask
+    // Envío de formulario
+    let enviandoFormulario = false;
+
     if (formContacto) {
         formContacto.addEventListener('submit', async (e) => {
             e.preventDefault();
+
+            if (enviandoFormulario) return;
+            enviandoFormulario = true;
+
+            const btnSubmit = formContacto.querySelector('button[type="submit"]');
+            const textoOriginal = btnSubmit ? btnSubmit.textContent : 'Enviar';
+
+            if (btnSubmit) {
+                btnSubmit.disabled = true;
+                btnSubmit.textContent = 'Enviando...';
+            }
 
             const datos = {
                 nombre: document.getElementById('nombre').value,
@@ -156,14 +153,22 @@ document.addEventListener('DOMContentLoaded', () => {
                 const resultado = await response.json();
 
                 if (response.ok) {
-                    alert(resultado.message);
                     formContacto.reset();
-                    modal.classList.remove('active'); // Cerrar modal al enviar
+                    
+                    // FUERZA LA REMOCIÓN DEL CONTENEDOR DEL FORMULARIO DEL DOM TEMPORALMENTE
+                    if (modalFormBody) modalFormBody.style.display = 'none';
+                    if (mensajeEstado) mensajeEstado.classList.remove('hidden');
                 } else {
                     alert('Error: ' + resultado.message);
                 }
             } catch (error) {
-                alert('Ocurrió un error al enviar la solicitud. Inténtalo de nuevo.');
+                alert('Ocurrió un error al enviar tu solicitud. Inténtalo de nuevo.');
+            } finally {
+                enviandoFormulario = false;
+                if (btnSubmit) {
+                    btnSubmit.disabled = false;
+                    btnSubmit.textContent = textoOriginal;
+                }
             }
         });
     }
