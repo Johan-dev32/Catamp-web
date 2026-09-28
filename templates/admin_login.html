@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Acceso Administrador | CATAMP S.A.S.</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+  <style>
+    .toggle-password-btn {
+      position: absolute;
+      right: 12px;
+      background: transparent;
+      border: none;
+      color: #8E9BAE;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 4px;
+      transition: color 0.2s ease;
+    }
+    .toggle-password-btn:hover {
+      color: #00B5E2; /* Azul corporativo al pasar el cursor */
+    }
+    .toggle-password-btn svg {
+      width: 20px;
+      height: 20px;
+      stroke-width: 2;
+    }
+  </style>
+</head>
+<body style="background-color: #06162F; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0;">
+
+  <div style="background: #0B1B3D; padding: 40px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); width: 100%; max-width: 400px; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+    <div style="text-align: center; margin-bottom: 25px;">
+      <h2 style="color: white; font-size: 1.5rem; margin-bottom: 8px; font-weight: 700;">Panel de Control</h2>
+      <p style="color: #AEB9CA; font-size: 0.88rem;">CATAMP S.A.S. - Iniciar Sesión</p>
+    </div>
+
+    {% if error %}
+      <div style="background: rgba(239, 68, 68, 0.15); border: 1px solid #EF4444; color: #FCA5A5; padding: 10px 14px; border-radius: 6px; font-size: 0.85rem; margin-bottom: 20px;">
+        {{ error }}
+      </div>
+    {% endif %}
+
+    <form action="{{ url_for('admin_login') }}" method="POST" style="display: flex; flex-direction: column; gap: 18px;">
+      <div>
+        <label style="display: block; color: #AEB9CA; font-size: 0.85rem; margin-bottom: 6px; font-weight: 600;">Usuario:</label>
+        <input type="text" name="usuario" required style="width: 100%; padding: 12px; background: #06162F; border: 1px solid rgba(255,255,255,0.15); color: white; border-radius: 6px; box-sizing: border-box; font-size: 0.95rem;">
+      </div>
+
+      <div>
+        <label style="display: block; color: #AEB9CA; font-size: 0.85rem; margin-bottom: 6px; font-weight: 600;">Contraseña:</label>
+        <div style="position: relative; display: flex; align-items: center;">
+          <input type="password" id="passwordInput" name="password" required style="width: 100%; padding: 12px 48px 12px 12px; background: #06162F; border: 1px solid rgba(255,255,255,0.15); color: white; border-radius: 6px; box-sizing: border-box; font-size: 0.95rem;">
+          
+          <button type="button" id="togglePasswordBtn" class="toggle-password-btn" aria-label="Mostrar u ocultar contraseña">
+            <!-- Icono Ojo (Mostrar) -->
+            <svg id="iconEye" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+              <circle cx="12" cy="12" r="3"></circle>
+            </svg>
+            <!-- Icono Ojo Tachado (Ocultar) - Oculto por defecto -->
+            <svg id="iconEyeOff" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+              <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path>
+              <line x1="1" y1="1" x2="23" y2="23"></line>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-primary" style="margin-top: 8px; width: 100%; padding: 12px; font-weight: 600;">Ingresar</button>
+    </form>
+
+    <div style="text-align: center; margin-top: 24px;">
+      <a href="{{ url_for('home') }}" style="color: #00B5E2; font-size: 0.85rem; text-decoration: none; font-weight: 500;">&larr; Volver a la página principal</a>
+    </div>
+  </div>
+
+  <script>
+    const passwordInput = document.getElementById('passwordInput');
+    const togglePasswordBtn = document.getElementById('togglePasswordBtn');
+    const iconEye = document.getElementById('iconEye');
+    const iconEyeOff = document.getElementById('iconEyeOff');
+
+    if (togglePasswordBtn && passwordInput) {
+      togglePasswordBtn.addEventListener('click', () => {
+        const isPassword = passwordInput.getAttribute('type') === 'password';
+        
+        // Cambiar tipo de input
+        passwordInput.setAttribute('type', isPassword ? 'text' : 'password');
+        
+        // Alternar visibilidad de los SVGs vectoriales
+        iconEye.style.display = isPassword ? 'none' : 'block';
+        iconEyeOff.style.display = isPassword ? 'block' : 'none';
+      });
+    }
+  </script>
+
+</body>
+</html>

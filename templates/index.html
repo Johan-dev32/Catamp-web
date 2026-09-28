@@ -10,6 +10,17 @@
   </head>
 
   <body>
+    <!-- BANNER SUPERIOR EXCLUSIVO DE ADMIN -->
+    {% if session.get('es_admin') %}
+      <div style="background: #00B5E2; padding: 10px 20px; display: flex; justify-content: space-between; align-items: center; color: white; position: sticky; top: 0; z-index: 9999;">
+        <span style="font-size: 0.88rem; font-weight: 600;">🛠️ Modo Administrador Activo</span>
+        <div>
+          <button id="btnAbrirSubirProyecto" class="btn btn-primary" style="padding: 6px 14px; font-size: 0.8rem; background: #06162F; color: white; border: none; margin-right: 10px;">+ Agregar Obra a Galería</button>
+          <a href="{{ url_for('admin_logout') }}" style="color: white; font-size: 0.85rem; text-decoration: underline;">Cerrar Sesión</a>
+        </div>
+      </div>
+    {% endif %}
+
     <header class="header">
       <div class="container nav">
         <a href="#inicio" class="logo" aria-label="CATAMP S.A.S."><img src="{{ url_for('static', filename='img/Logo3.png') }}" alt="CATAMP S.A.S. - Ingeniería y Obra Civil" /></a>
@@ -64,20 +75,19 @@
       </section>
 
       <!-- NOSOTROS -->
-
-      <section id="nosotros" class="section">
+      <section id="nosotros" class="section section-about">
         <div class="container">
           <div class="section-heading">
             <span class="eyebrow">QUIÉNES SOMOS</span>
-
-            <h2>Ingeniería con experiencia, responsabilidad y confianza.</h2>
+            <h2>Transformamos ideas en infraestructuras sólidas y espacios funcionales.</h2>
           </div>
 
           <div class="about-grid">
             <div class="about-text">
-              <p>CATAMP S.A.S. es una empresa especializada en ingeniería civil, enfocada en la ejecución de proyectos comerciales, residenciales e industriales en Bogotá y Colombia.</p>
-
-              <p>Nos caracterizamos por el cumplimiento, la calidad técnica y la responsabilidad en cada obra, ofreciendo soluciones confiables y eficientes.</p>
+              <p>
+                En <strong>INGENIERÍA & OBRA CIVIL CATAMP SAS</strong>, transformamos ideas en infraestructuras sólidas y espacios funcionales. Somos una empresa colombiana comprometida con la excelencia en el desarrollo de proyectos de diseño estructural, obra nueva, remodelaciones y mantenimientos para los sectores residencial, comercial e industrial.
+              </p>
+              <p>Guiados por la rigurosidad técnica y la innovación, aportamos soluciones integrales de ingeniería que cumplen con los más altos estándares de calidad, seguridad y normatividad vigente. Nos apasiona optimizar cada recurso para entregar proyectos que superen las expectativas de nuestros clientes y generen valor a largo plazo.</p>
             </div>
 
             <div class="stats">
@@ -85,12 +95,10 @@
                 <strong>6+</strong>
                 <span>Años de experiencia</span>
               </div>
-
               <div class="stat">
                 <strong>100%</strong>
                 <span>Cumplimiento normativo</span>
               </div>
-
               <div class="stat">
                 <strong>3</strong>
                 <span>Sectores atendidos</span>
@@ -364,6 +372,83 @@
         </div>
       </section>
 
+      <!-- SECCIÓN DE GALERÍA DE PROYECTOS -->
+      <section id="galeria" class="section section-dark">
+        <div class="container">
+          <div class="section-heading">
+            <span class="eyebrow">PORTAFOLIO DE OBRAS</span>
+            <h2>Nuestra experiencia en evidencia.</h2>
+            <p style="color: #AEB9CA; margin-top: 10px;">Conoce los proyectos ejecutados por nuestro equipo técnico en cada sector.</p>
+          </div>
+
+          <!-- Botones de Filtro -->
+          <div class="gallery-filters">
+            <button class="filter-btn active" data-filter="todos">Todos</button>
+            <button class="filter-btn" data-filter="residencial">Residencial</button>
+            <button class="filter-btn" data-filter="comercial">Comercial</button>
+            <button class="filter-btn" data-filter="industrial">Industrial</button>
+          </div>
+
+          <!-- Grilla Dinámica Jinja2 -->
+          <div class="gallery-grid">
+            {% if proyectos %}
+              {% for proyecto in proyectos %}
+                <article class="gallery-card" data-category="{{ proyecto.sector }}">
+                  <div class="gallery-img" style="background-image: url('{{ url_for('static', filename='uploads/galeria/' + proyecto.imagen_filename) }}');"></div>
+                  <div class="gallery-content">
+                    <span class="gallery-tag tag-{{ proyecto.sector }}">{{ proyecto.sector|capitalize }}</span>
+                    <h3>{{ proyecto.titulo }}</h3>
+                    <p>{{ proyecto.descripcion }}</p>
+                    <button class="btn btn-primary btn-cotizar-obra" data-proyecto="{{ proyecto.titulo }}">Cotizar proyecto similar</button>
+                  </div>
+                </article>
+              {% endfor %}
+            {% else %}
+              <div style="grid-column: 1 / -1; text-align: center; padding: 40px; background: #0B1B3D; border-radius: 12px; border: 1px dashed rgba(255,255,255,0.2);">
+                <p style="color: #C0CCE0; font-size: 1.1rem; margin: 0;">Aún no hay proyectos publicados en la galería.</p>
+                {% if session.get('es_admin') %}
+                  <p style="color: #8E9BAE; font-size: 0.9rem; margin-top: 8px;">Usa el botón superior "+ Agregar Obra" para subir la primera imagen.</p>
+                {% endif %}
+              </div>
+            {% endif %}
+          </div>
+        </div>
+      </section>
+
+      <!-- MODAL PARA PUBLICAR PROYECTO (PROTEGIDO ADMIN) -->
+      {% if session.get('es_admin') %}
+        <div id="modalSubirProyecto" class="modal-overlay">
+          <div class="modal-content" style="max-width: 500px;">
+            <button class="modal-close" id="btnCerrarSubirProyecto">&times;</button>
+
+            <div class="modal-header">
+              <span class="eyebrow">PANEL ADMINISTRADOR</span>
+              <h2>Publicar Nuevo Proyecto</h2>
+            </div>
+
+            <form id="formSubirProyecto" enctype="multipart/form-data" style="display: flex; flex-direction: column; gap: 15px; margin-top: 20px;">
+              <input type="text" id="proyectoTitulo" name="titulo" placeholder="Título de la obra (Ej: Remodelación Oficinas)" required style="padding: 12px; background: #06162F; border: 1px solid rgba(255,255,255,0.15); color: white; border-radius: 6px;" />
+
+              <select id="proyectoSector" name="sector" required style="padding: 12px; background: #06162F; border: 1px solid rgba(255,255,255,0.15); color: white; border-radius: 6px;">
+                <option value="" disabled selected>Selecciona el Sector *</option>
+                <option value="residencial">Residencial</option>
+                <option value="comercial">Comercial</option>
+                <option value="industrial">Industrial</option>
+              </select>
+
+              <textarea id="proyectoDescripcion" name="descripcion" rows="3" placeholder="Descripción breve del trabajo realizado *" required style="padding: 12px; background: #06162F; border: 1px solid rgba(255,255,255,0.15); color: white; border-radius: 6px; resize: none;"></textarea>
+
+              <div>
+                <label style="display: block; font-size: 0.85rem; color: #AEB9CA; margin-bottom: 6px;">Fotografía de la obra:</label>
+                <input type="file" id="proyectoImagen" name="imagen" accept="image/png, image/jpeg, image/jpg, image/webp" required style="color: white; font-size: 0.9rem;" />
+              </div>
+
+              <button type="submit" class="btn btn-primary" style="margin-top: 10px;">Publicar en Galería</button>
+            </form>
+          </div>
+        </div>
+      {% endif %}
+
       <!-- CONTACTO -->
 
       <section id="contacto" class="contact-section">
@@ -424,6 +509,30 @@
               Gracias por contactar a <strong>CATAMP S.A.S.</strong> Nos pondremos en contacto contigo a la brevedad.
             </p>
             <button type="button" id="btnCerrarEstado" class="btn-status">Aceptar</button>
+          </div>
+        </div>
+      </div>
+
+      <div id="modalSectorDetail" class="modal-overlay">
+        <div class="modal-content modal-sector-content">
+          <button id="btnCerrarSector" class="modal-close">&times;</button>
+
+          <div class="sector-detail-header">
+            <span id="sectorDetailEyebrow" class="eyebrow">SECTOR</span>
+            <h3 id="sectorDetailTitle">Título del Sector</h3>
+          </div>
+
+          <div class="sector-detail-body">
+            <p id="sectorDetailDescription">Descripción detallada del sector...</p>
+
+            <div class="sector-features">
+              <h4>Servicios clave en este sector:</h4>
+              <ul id="sectorDetailList"></ul>
+            </div>
+          </div>
+
+          <div class="sector-detail-footer">
+            <a href="#contacto" id="btnCotizarSector" class="btn btn-primary">Cotizar este sector</a>
           </div>
         </div>
       </div>

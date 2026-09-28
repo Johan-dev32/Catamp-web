@@ -3,7 +3,7 @@
 const animatedElements = document.querySelectorAll(
     ".section-heading, .about-text, .stats, .service-card, " +
     ".technical-card, .technical-header, .technical-action, " +
-    ".sector, .why-header, .why-card, .contact-content"
+    ".sector, .why-header, .why-card, .contact-content, .gallery-card"
 );
 
 const observer = new IntersectionObserver(
@@ -15,9 +15,7 @@ const observer = new IntersectionObserver(
             }
         });
     },
-    {
-        threshold: 0.15
-    }
+    { threshold: 0.15 }
 );
 
 animatedElements.forEach((element) => {
@@ -46,13 +44,11 @@ const navMenu = document.getElementById('navMenu');
 const navLinks = document.querySelectorAll('.navigation a');
 
 if (btnMenu && navMenu) {
-    // Toggle para abrir/cerrar
     btnMenu.addEventListener('click', () => {
         btnMenu.classList.toggle('active');
         navMenu.classList.toggle('active');
     });
 
-    // Cerrar el menú al hacer clic en cualquier enlace del menú
     navLinks.forEach(link => {
         link.addEventListener('click', () => {
             btnMenu.classList.remove('active');
@@ -62,63 +58,52 @@ if (btnMenu && navMenu) {
 }
 
 
-// CONTROL DE LA VENTANA MODAL Y ENVÍO DE FORMULARIO //
+// CONTROL DE VENTANAS MODALES Y EVENTOS DOM //
 
 document.addEventListener('DOMContentLoaded', () => {
-    const modal = document.getElementById('modalContacto');
+    const modalContacto = document.getElementById('modalContacto');
     const modalFormBody = document.getElementById('modalFormBody');
-    const btnCerrar = document.getElementById('btnCerrarModal');
+    const btnCerrarContacto = document.getElementById('btnCerrarModal');
     const formContacto = document.getElementById('formContacto');
     const mensajeEstado = document.getElementById('mensajeEstado');
     const btnCerrarEstado = document.getElementById('btnCerrarEstado');
 
-    // Abrir modal
+    // Abrir modal de contacto
     const btnsAbrirModal = document.querySelectorAll('#btnAbrirModal, .btn[href="#contacto"]');
 
     btnsAbrirModal.forEach(btn => {
         btn.addEventListener('click', (e) => {
             e.preventDefault();
-            if (modal) modal.classList.add('active');
+            if (modalContacto) modalContacto.classList.add('active');
         });
     });
 
-    // Función auxiliar para resetear la vista del modal al cerrarse
     const resetearVistaModal = () => {
         if (modalFormBody && mensajeEstado) {
-            modalFormBody.style.display = 'block'; // Muestra el cuerpo del formulario
-            mensajeEstado.classList.add('hidden'); // Oculta el mensaje de éxito
+            modalFormBody.style.display = 'block';
+            mensajeEstado.classList.add('hidden');
         }
     };
 
-    // Cerrar modal con la X
-    if (btnCerrar) {
-        btnCerrar.addEventListener('click', () => {
-            if (modal) {
-                modal.classList.remove('active');
+    if (btnCerrarContacto) {
+        btnCerrarContacto.addEventListener('click', () => {
+            if (modalContacto) {
+                modalContacto.classList.remove('active');
                 setTimeout(resetearVistaModal, 300);
             }
         });
     }
 
-    // Cerrar con el botón "Aceptar" del mensaje de éxito
     if (btnCerrarEstado) {
         btnCerrarEstado.addEventListener('click', () => {
-            if (modal) {
-                modal.classList.remove('active');
+            if (modalContacto) {
+                modalContacto.classList.remove('active');
                 setTimeout(resetearVistaModal, 300);
             }
         });
     }
 
-    // Cerrar haciendo clic fuera de la ventana
-    window.addEventListener('click', (e) => {
-        if (e.target === modal) {
-            modal.classList.remove('active');
-            setTimeout(resetearVistaModal, 300);
-        }
-    });
-
-    // Envío de formulario
+    // Envío del formulario de contacto
     let enviandoFormulario = false;
 
     if (formContacto) {
@@ -154,8 +139,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 if (response.ok) {
                     formContacto.reset();
-                    
-                    // FUERZA LA REMOCIÓN DEL CONTENEDOR DEL FORMULARIO DEL DOM TEMPORALMENTE
                     if (modalFormBody) modalFormBody.style.display = 'none';
                     if (mensajeEstado) mensajeEstado.classList.remove('hidden');
                 } else {
@@ -172,4 +155,214 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+
+    // MODAL DETALLE DE SECTORES //
+    const sectoresInfo = {
+        residencial: {
+            eyebrow: "SECTOR RESIDENCIAL",
+            titulo: "Sector Residencial",
+            descripcion: "Transformamos planos en el hogar de tus sueños. Diseñamos, construimos y remodelamos espacios residenciales enfocados en el confort, la funcionalidad y la más alta calidad técnica para tu familia.",
+            servicios: [
+                "Diseño y construcción de viviendas unifamiliares y multifamiliares.",
+                "Remodelación técnica de interiores y espacios residenciales.",
+                "Mantenimiento preventivo y correctivo de áreas comunes.",
+                "Garantía de confort, funcionalidad y alta calidad técnica."
+            ]
+        },
+        comercial: {
+            eyebrow: "SECTOR COMERCIAL",
+            titulo: "Sector Comercial",
+            descripcion: "Creamos espacios que impulsan tu negocio. Desarrollamos diseños arquitectónicos y remodelaciones para locales comerciales y oficinas, optimizando cada metro cuadrado para mejorar la experiencia de tus clientes y colaboradores.",
+            servicios: [
+                "Diseño arquitectónico y adecuación de locales comerciales.",
+                "Remodelación y distribución eficiente de oficinas.",
+                "Optimización de espacios para experiencia de clientes y colaboradores.",
+                "Mantenimiento y acabados de alto impacto."
+            ]
+        },
+        industrial: {
+            eyebrow: "SECTOR INDUSTRIAL",
+            titulo: "Sector Industrial",
+            descripcion: "Soluciones de ingeniería robustas y eficientes. Nos encargamos de la construcción, remodelación y mantenimiento de plantas, bodegas y estructuras industriales bajo estrictos estándares de seguridad, resistencia y normatividad vigente.",
+            servicios: [
+                "Construcción y reforzamiento de estructuras industriales.",
+                "Remodelación y adecuación de plantas y bodegas.",
+                "Mantenimiento técnico especializado para infraestructura.",
+                "Cumplimiento de estrictos estándares de seguridad y normatividad NSR-10."
+            ]
+        }
+    };
+
+    const modalSectorDetail = document.getElementById('modalSectorDetail');
+    const btnCerrarSector = document.getElementById('btnCerrarSector');
+    const sectorDetailEyebrow = document.getElementById('sectorDetailEyebrow');
+    const sectorDetailTitle = document.getElementById('sectorDetailTitle');
+    const sectorDetailDescription = document.getElementById('sectorDetailDescription');
+    const sectorDetailList = document.getElementById('sectorDetailList');
+    const btnCotizarSector = document.getElementById('btnCotizarSector');
+
+    const sectorCards = document.querySelectorAll('.sector');
+
+    sectorCards.forEach(card => {
+        let keySector = '';
+        if (card.classList.contains('sector-residencial')) keySector = 'residencial';
+        else if (card.classList.contains('sector-comercial')) keySector = 'comercial';
+        else if (card.classList.contains('sector-industrial')) keySector = 'industrial';
+
+        card.addEventListener('click', (e) => {
+            e.preventDefault();
+
+            const info = sectoresInfo[keySector];
+            if (info && modalSectorDetail) {
+                if (sectorDetailEyebrow) sectorDetailEyebrow.textContent = info.eyebrow;
+                if (sectorDetailTitle) sectorDetailTitle.textContent = info.titulo;
+                if (sectorDetailDescription) sectorDetailDescription.textContent = info.descripcion;
+
+                if (sectorDetailList) {
+                    sectorDetailList.innerHTML = '';
+                    info.servicios.forEach(servicio => {
+                        const li = document.createElement('li');
+                        li.textContent = servicio;
+                        sectorDetailList.appendChild(li);
+                    });
+                }
+
+                modalSectorDetail.classList.add('active');
+            }
+        });
+    });
+
+    if (btnCerrarSector) {
+        btnCerrarSector.addEventListener('click', () => {
+            if (modalSectorDetail) modalSectorDetail.classList.remove('active');
+        });
+    }
+
+    if (btnCotizarSector) {
+        btnCotizarSector.addEventListener('click', (e) => {
+            e.preventDefault();
+            if (modalSectorDetail) modalSectorDetail.classList.remove('active');
+
+            const mensajeInput = document.getElementById('mensaje');
+            if (mensajeInput && sectorDetailTitle) {
+                mensajeInput.value = `Hola, quisiera solicitar una cotización/información sobre el sector: ${sectorDetailTitle.textContent}.`;
+            }
+
+            setTimeout(() => {
+                if (modalContacto) modalContacto.classList.add('active');
+            }, 200);
+        });
+    }
+
+    // LÓGICA DE FILTROS EN GALERÍA //
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const galleryCards = document.querySelectorAll('.gallery-card');
+
+    filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            filterBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            const filter = btn.getAttribute('data-filter');
+
+            galleryCards.forEach(card => {
+                const category = card.getAttribute('data-category');
+                if (filter === 'todos' || filter === category) {
+                    card.classList.remove('hide');
+                } else {
+                    card.classList.add('hide');
+                }
+            });
+        });
+    });
+
+    // Acción del botón "Cotizar proyecto similar"
+    const btnsCotizarObra = document.querySelectorAll('.btn-cotizar-obra');
+
+    btnsCotizarObra.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            const nombreProyecto = btn.getAttribute('data-proyecto');
+            const mensajeInput = document.getElementById('mensaje');
+
+            if (mensajeInput && nombreProyecto) {
+                mensajeInput.value = `Hola, vi su proyecto de "${nombreProyecto}" en la galería y me gustaría cotizar una obra similar.`;
+            }
+
+            if (modalContacto) {
+                modalContacto.classList.add('active');
+            }
+        });
+    });
+
+    // SUBIR NUEVO PROYECTO (ADMIN) //
+    const btnAbrirSubirProyecto = document.getElementById('btnAbrirSubirProyecto');
+    const formSubirProyecto = document.getElementById('formSubirProyecto');
+    const modalSubirProyecto = document.getElementById('modalSubirProyecto');
+    const btnCerrarSubirProyecto = document.getElementById('btnCerrarSubirProyecto');
+
+    if (btnAbrirSubirProyecto && modalSubirProyecto) {
+        btnAbrirSubirProyecto.addEventListener('click', () => {
+            modalSubirProyecto.classList.add('active');
+        });
+    }
+
+    if (formSubirProyecto) {
+        formSubirProyecto.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const formData = new FormData(formSubirProyecto);
+            const btnSubmit = formSubirProyecto.querySelector('button[type="submit"]');
+
+            if (btnSubmit) {
+                btnSubmit.disabled = true;
+                btnSubmit.textContent = 'Guardando...';
+            }
+
+            try {
+                const response = await fetch('/api/galeria/nuevo', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                const resultado = await response.json();
+
+                if (response.ok) {
+                    alert('¡Proyecto publicado con éxito!');
+                    formSubirProyecto.reset();
+                    if (modalSubirProyecto) modalSubirProyecto.classList.remove('active');
+                    window.location.reload();
+                } else {
+                    alert('Error: ' + resultado.message);
+                }
+            } catch (error) {
+                alert('Ocurrió un error al subir el proyecto a la galería.');
+            } finally {
+                if (btnSubmit) {
+                    btnSubmit.disabled = false;
+                    btnSubmit.textContent = 'Publicar en Galería';
+                }
+            }
+        });
+    }
+
+    if (btnCerrarSubirProyecto && modalSubirProyecto) {
+        btnCerrarSubirProyecto.addEventListener('click', () => {
+            modalSubirProyecto.classList.remove('active');
+        });
+    }
+
+    // Cierre de modales al hacer clic fuera del contenido
+    window.addEventListener('click', (e) => {
+        if (e.target === modalContacto) {
+            modalContacto.classList.remove('active');
+            setTimeout(resetearVistaModal, 300);
+        }
+        if (e.target === modalSectorDetail) {
+            modalSectorDetail.classList.remove('active');
+        }
+        if (e.target === modalSubirProyecto) {
+            modalSubirProyecto.classList.remove('active');
+        }
+    });
 });

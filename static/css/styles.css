@@ -1,6 +1,8 @@
 /* CATAMP S.A.S. — ESTILOS PRINCIPALES */
 
-/* VARIABLES */
+/* ==========================================
+   1. VARIABLES & RESET
+   ========================================== */
 
 :root {
     --catamp-blue: #0D2F81;
@@ -27,9 +29,6 @@
 
     --container: 1180px;
 }
-
-
-/* RESET */
 
 * {
     margin: 0;
@@ -60,7 +59,9 @@ img {
 }
 
 
-/* GENERAL */
+/* ==========================================
+   2. GENERAL & BOTONES
+   ========================================== */
 
 .container {
     width: min(90%, var(--container));
@@ -95,9 +96,6 @@ img {
     color: var(--primary);
 }
 
-
-/* BUTTONS */
-
 .btn {
     display: inline-flex;
     align-items: center;
@@ -108,11 +106,11 @@ img {
     border-radius: 6px;
     border: 1px solid transparent;
     cursor: pointer;
-    transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), 
-                box-shadow 0.3s ease, 
-                background-color 0.3s ease, 
-                color 0.3s ease, 
-                border-color 0.3s ease;
+    transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1),
+        box-shadow 0.3s ease,
+        background-color 0.3s ease,
+        color 0.3s ease,
+        border-color 0.3s ease;
 }
 
 .btn-primary {
@@ -151,7 +149,10 @@ img {
     transform: translateY(-1px);
 }
 
-/* HEADER */
+
+/* ==========================================
+   3. HEADER & NAVEGACIÓN
+   ========================================== */
 
 .header {
     position: fixed;
@@ -163,6 +164,12 @@ img {
     backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);
     border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    transition: background 0.3s ease, box-shadow 0.3s ease, backdrop-filter 0.3s ease;
+}
+
+.header-scrolled {
+    background: rgba(7, 20, 46, 0.97);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.18);
 }
 
 .nav {
@@ -185,7 +192,7 @@ img {
     height: 100%;
     width: auto;
     object-fit: contain;
-    filter: drop-shadow(0px 2px 4px rgba(0, 0, 0, 0.2)); 
+    filter: drop-shadow(0px 2px 4px rgba(0, 0, 0, 0.2));
 }
 
 .navigation {
@@ -213,10 +220,9 @@ img {
     background: var(--catamp-cyan);
     border-radius: 2px;
     opacity: 0;
-    
     transform: translateX(-50%);
-    transition: width 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), 
-                opacity 0.3s ease;
+    transition: width 0.4s cubic-bezier(0.25, 0.8, 0.25, 1),
+        opacity 0.3s ease;
 }
 
 .navigation a:hover {
@@ -228,37 +234,35 @@ img {
     opacity: 1;
 }
 
+.hamburger-btn {
+    display: none;
+}
 
-/* HERO */
+
+/* ==========================================
+   4. SECCIÓN HERO
+   ========================================== */
 
 .hero {
     min-height: 100vh;
-
     display: flex;
     align-items: center;
-
     padding: 125px 0 75px;
-
     background:
         linear-gradient(90deg,
             rgba(6, 22, 47, 0.96) 0%,
             rgba(13, 47, 129, 0.78) 48%,
             rgba(6, 22, 47, 0.34) 100%),
         url("../img/hero.jpeg");
-
     background-size: cover;
     background-position: center;
-
     color: var(--white);
 }
 
 .hero-content {
     display: grid;
-
     grid-template-columns: minmax(0, 1.25fr) minmax(260px, 0.55fr);
-
     align-items: center;
-
     gap: 75px;
 }
 
@@ -272,11 +276,8 @@ img {
 
 .hero h1 {
     margin: 0 0 24px;
-
     font-size: clamp(3rem, 5.3vw, 5rem);
-
     line-height: 0.99;
-
     letter-spacing: -2.5px;
 }
 
@@ -287,11 +288,8 @@ img {
 
 .hero-text>p {
     max-width: 600px;
-
     margin-bottom: 34px;
-
     color: #E1E7F0;
-
     font-size: 1.08rem;
 }
 
@@ -303,17 +301,12 @@ img {
 
 .hero-card {
     padding: 36px;
-
     background: rgba(255, 255, 255, 0.09);
-
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
-
     border: 1px solid rgba(255, 255, 255, 0.14);
     border-left: 4px solid var(--catamp-yellow);
-
     border-radius: 0 16px 16px 0;
-
     box-shadow: 0 20px 45px rgba(0, 0, 0, 0.18);
 }
 
@@ -321,31 +314,26 @@ img {
     font-size: clamp(4rem, 6vw, 5.5rem);
     font-weight: 900;
     line-height: 1;
-
     color: var(--catamp-yellow);
 }
 
 .hero-card p {
     max-width: 190px;
-
     margin-top: 18px;
-
     color: #E8EDF5;
-
     font-size: 1rem;
     line-height: 1.6;
 }
 
 
-/* ABOUT */
+/* ==========================================
+   5. NOSOTROS (ABOUT)
+   ========================================== */
 
 .about-grid {
     display: grid;
-
     grid-template-columns: 1fr 1fr;
-
     gap: 80px;
-
     align-items: center;
 }
 
@@ -355,24 +343,19 @@ img {
 
 .about-text p {
     margin-bottom: 20px;
-
     color: var(--text-light);
-
     font-size: 1.05rem;
 }
 
 .stats {
     display: grid;
-
     grid-template-columns: repeat(3, 1fr);
-
     border-top: 1px solid var(--border);
     border-bottom: 1px solid var(--border);
 }
 
 .stat {
     padding: 35px 20px;
-
     border-right: 1px solid var(--border);
 }
 
@@ -382,77 +365,57 @@ img {
 
 .stat strong {
     display: block;
-
     font-size: 2.5rem;
-
     color: var(--catamp-blue);
 }
 
 .stat span {
     color: var(--text-light);
-
     font-size: 0.85rem;
 }
 
 
-/* SERVICES */
+/* ==========================================
+   6. SERVICIOS
+   ========================================== */
 
 .services-grid {
     display: grid;
-
     grid-template-columns: repeat(3, 1fr);
-
     gap: 2px;
-
     background: var(--catamp-blue-dark);
 }
 
 .service-card {
     position: relative;
-
     min-height: 420px;
-
     overflow: hidden;
-
     background-size: cover;
     background-position: center;
-
     transition: 0.4s ease;
+    will-change: transform;
 }
 
 .service-card::before {
     content: "";
-
     position: absolute;
     inset: 0;
-
-    background:
-        linear-gradient(to top,
-            rgba(6, 22, 47, 0.96),
-            rgba(6, 22, 47, 0.18));
-
+    background: linear-gradient(to top, rgba(6, 22, 47, 0.96), rgba(6, 22, 47, 0.18));
     transition: 0.4s ease;
 }
 
 .service-card:hover::before {
-    background:
-        linear-gradient(to top,
-            rgba(13, 47, 129, 0.95),
-            rgba(0, 181, 226, 0.18));
+    background: linear-gradient(to top, rgba(13, 47, 129, 0.95), rgba(0, 181, 226, 0.18));
 }
 
 .service-overlay {
     position: relative;
     z-index: 2;
-
     height: 100%;
-
     padding: 30px;
-
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-
     color: var(--white);
 }
 
@@ -469,22 +432,16 @@ img {
 
 .service-overlay p {
     max-width: 350px;
-
     margin-bottom: 20px;
-
     color: #E2E8F0;
-
     font-size: 0.9rem;
 }
 
 .service-overlay a {
     display: inline-block;
-
     color: var(--catamp-yellow);
-
     font-size: 0.85rem;
     font-weight: 700;
-
     transition: 0.3s ease;
 }
 
@@ -492,9 +449,7 @@ img {
     color: var(--white);
 }
 
-
-/* SERVICE IMAGES */
-
+/* Rutas imágenes de servicios */
 .service-obra {
     background-image: url("../img/obra-nueva.webp");
 }
@@ -520,7 +475,9 @@ img {
 }
 
 
-/* TECHNICAL VISITS */
+/* ==========================================
+   7. VISITAS TÉCNICAS
+   ========================================== */
 
 .technical-section {
     padding: 110px 0;
@@ -548,85 +505,82 @@ img {
     font-size: 1rem;
 }
 
-/* ==========================================
-   VISITAS TÉCNICAS (Estilo Grid de Servicios)
-   ========================================== */
-
 .technical-grid {
-    display: grid !important;
-    grid-template-columns: repeat(4, 1fr) !important;
-    gap: 2px !important;
-    background: var(--catamp-blue-dark) !important;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2px;
+    background: var(--catamp-blue-dark);
 }
 
 .technical-card {
-    position: relative !important;
-    min-height: 420px !important;
-    overflow: hidden !important;
-    background-size: cover !important;
-    background-position: center !important;
-    transition: 0.4s ease !important;
-    border: none !important;
-    box-shadow: none !important;
-    border-radius: 0 !important;
+    position: relative;
+    min-height: 420px;
+    overflow: hidden;
+    background-size: cover;
+    background-position: center;
+    transition: 0.4s ease;
+    will-change: transform;
 }
 
 .technical-card::before {
-    content: "" !important;
-    position: absolute !important;
-    inset: 0 !important;
-    background: linear-gradient(
-        to top,
-        rgba(6, 22, 47, 0.96),
-        rgba(6, 22, 47, 0.18)
-    ) !important;
-    transition: 0.4s ease !important;
-    z-index: 1 !important;
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(6, 22, 47, 0.96), rgba(6, 22, 47, 0.18));
+    transition: 0.4s ease;
+    z-index: 1;
 }
 
 .technical-card:hover::before {
-    background: linear-gradient(
-        to top,
-        rgba(13, 47, 129, 0.95),
-        rgba(0, 181, 226, 0.18)
-    ) !important;
+    background: linear-gradient(to top, rgba(13, 47, 129, 0.95), rgba(0, 181, 226, 0.18));
 }
 
 .technical-card .card-overlay {
-    position: relative !important;
-    z-index: 2 !important;
-    height: 100% !important;
-    padding: 30px !important;
-    display: flex !important;
-    flex-direction: column !important;
-    justify-content: space-between !important;
-    color: var(--white) !important;
+    position: relative;
+    z-index: 2;
+    height: 100%;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    color: var(--white);
 }
 
-.technical-card .card-overlay > span {
-    font-size: 0.8rem !important;
-    font-weight: 700 !important;
-    color: var(--catamp-yellow) !important;
+.technical-card .card-overlay>span {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--catamp-yellow);
 }
 
 .technical-card h3 {
-    margin-bottom: 12px !important;
-    font-size: 1.5rem !important;
-    color: var(--white) !important;
+    margin-bottom: 12px;
+    font-size: 1.5rem;
+    color: var(--white);
 }
 
 .technical-card p {
-    max-width: 350px !important;
-    margin-bottom: 20px !important;
-    color: #E2E8F0 !important;
-    font-size: 0.9rem !important;
+    max-width: 350px;
+    margin-bottom: 20px;
+    color: #E2E8F0;
+    font-size: 0.9rem;
 }
 
-/* Rutas de imágenes */
-.tech-card-inspeccion { background-image: url("../img/Inspección\ profesional.png") !important; }
-.tech-card-calidad    { background-image: url("../img/Control\ de\ calidad.png") !important; }
-.tech-card-patologias { background-image: url("../img/Patologías\ constructivas.png") !important; }
-.tech-card-informe    { background-image: url("../img/Informe\ y\ plan\ de\ acción.png") !important; }
+/* Rutas imágenes de visitas técnicas */
+.tech-card-inspeccion {
+    background-image: url("../img/Inspección\ profesional.png");
+}
+
+.tech-card-calidad {
+    background-image: url("../img/Control\ de\ calidad.png");
+}
+
+.tech-card-patologias {
+    background-image: url("../img/Patologías\ constructivas.png");
+}
+
+.tech-card-informe {
+    background-image: url("../img/Informe\ y\ plan\ de\ acción.png");
+}
 
 .technical-action {
     margin-top: 50px;
@@ -652,91 +606,94 @@ img {
 }
 
 
-/* SECTORS */
+/* ==========================================
+   8. SECTORES (EXPERIENCIA)
+   ========================================== */
 
 .sectors-grid {
-    display: grid !important;
-    grid-template-columns: repeat(3, 1fr) !important;
-    gap: 2px !important;
-    background: var(--catamp-blue-dark) !important;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    background: var(--catamp-blue-dark);
 }
 
 .sector {
-    position: relative !important;
-    min-height: 420px !important;
-    overflow: hidden !important;
-    background-size: cover !important;
-    background-position: center !important;
-    transition: 0.4s ease !important;
-    border: none !important;
-    box-shadow: none !important;
-    border-radius: 0 !important;
+    position: relative;
+    min-height: 420px;
+    overflow: hidden;
+    background-size: cover;
+    background-position: center;
+    transition: 0.4s ease;
+    cursor: pointer;
+    will-change: transform;
 }
 
 .sector::before {
-    content: "" !important;
-    position: absolute !important;
-    inset: 0 !important;
-    background: linear-gradient(
-        to top,
-        rgba(6, 22, 47, 0.96),
-        rgba(6, 22, 47, 0.18)
-    ) !important;
-    transition: 0.4s ease !important;
-    z-index: 1 !important;
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(6, 22, 47, 0.96), rgba(6, 22, 47, 0.18));
+    transition: 0.4s ease;
+    z-index: 1;
 }
 
 .sector:hover::before {
-    background: linear-gradient(
-        to top,
-        rgba(13, 47, 129, 0.95),
-        rgba(0, 181, 226, 0.18)
-    ) !important;
+    background: linear-gradient(to top, rgba(13, 47, 129, 0.95), rgba(0, 181, 226, 0.18));
 }
 
 .sector-overlay {
-    position: relative !important;
-    z-index: 2 !important;
-    height: 100% !important;
-    padding: 30px !important;
-    display: flex !important;
-    flex-direction: column !important;
-    justify-content: space-between !important;
-    color: var(--white) !important;
+    position: relative;
+    z-index: 2;
+    height: 100%;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    color: var(--white);
 }
 
 .sector h3 {
-    margin-bottom: 12px !important;
-    font-size: 1.5rem !important;
-    color: var(--white) !important;
+    margin-bottom: 12px;
+    font-size: 1.5rem;
+    color: var(--white);
 }
 
 .sector p {
-    max-width: 350px !important;
-    margin-bottom: 20px !important;
-    color: #E2E8F0 !important;
-    font-size: 0.9rem !important;
+    max-width: 350px;
+    margin-bottom: 20px;
+    color: #E2E8F0;
+    font-size: 0.9rem;
 }
 
 .sector-link {
-    display: inline-block !important;
-    color: var(--catamp-yellow) !important;
-    font-size: 0.85rem !important;
-    font-weight: 700 !important;
-    transition: 0.3s ease !important;
+    display: inline-block;
+    color: var(--catamp-yellow);
+    font-size: 0.85rem;
+    font-weight: 700;
+    transition: 0.3s ease;
 }
 
 .sector-link:hover {
-    color: var(--white) !important;
+    color: var(--white);
 }
 
-/* Rutas de imágenes */
-.sector-residencial { background-image: url("../img/Foto_Residencial.jpeg") !important; }
-.sector-comercial   { background-image: url("../img/Foto_Comercial.png") !important; }
-.sector-industrial  { background-image: url("../img/Foto_Industrial.jpeg") !important; }
+/* Rutas imágenes de sectores */
+.sector-residencial {
+    background-image: url("../img/Foto_Residencial.jpeg");
+}
+
+.sector-comercial {
+    background-image: url("../img/Foto_Comercial.png");
+}
+
+.sector-industrial {
+    background-image: url("../img/Foto_Industrial.jpeg");
+}
 
 
-/* PORQUE ELEGIRNOS */
+/* ==========================================
+   9. POR QUÉ ELEGIRNOS
+   ========================================== */
 
 .why-section {
     padding: 110px 0;
@@ -765,104 +722,230 @@ img {
 }
 
 .why-grid {
-    display: grid !important;
-    grid-template-columns: repeat(3, 1fr) !important;
-    gap: 2px !important;
-    background: var(--catamp-blue-dark) !important;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    background: var(--catamp-blue-dark);
 }
 
 .why-card {
-    position: relative !important;
-    min-height: 420px !important;
-    overflow: hidden !important;
-    background-size: cover !important;
-    background-position: center !important;
-    transition: 0.4s ease !important;
-    border: none !important;
-    box-shadow: none !important;
-    border-radius: 0 !important;
+    position: relative;
+    min-height: 420px;
+    overflow: hidden;
+    background-size: cover;
+    background-position: center;
+    transition: 0.4s ease;
+    will-change: transform;
 }
 
 .why-card::before {
-    content: "" !important;
-    position: absolute !important;
-    inset: 0 !important;
-    background: linear-gradient(
-        to top,
-        rgba(6, 22, 47, 0.96),
-        rgba(6, 22, 47, 0.18)
-    ) !important;
-    transition: 0.4s ease !important;
-    z-index: 1 !important;
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(6, 22, 47, 0.96), rgba(6, 22, 47, 0.18));
+    transition: 0.4s ease;
+    z-index: 1;
 }
 
 .why-card:hover::before {
-    background: linear-gradient(
-        to top,
-        rgba(13, 47, 129, 0.95),
-        rgba(0, 181, 226, 0.18)
-    ) !important;
+    background: linear-gradient(to top, rgba(13, 47, 129, 0.95), rgba(0, 181, 226, 0.18));
 }
 
 .why-card .card-overlay {
-    position: relative !important;
-    z-index: 2 !important;
-    height: 100% !important;
-    padding: 30px !important;
-    display: flex !important;
-    flex-direction: column !important;
-    justify-content: space-between !important;
-    color: var(--white) !important;
+    position: relative;
+    z-index: 2;
+    height: 100%;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    color: var(--white);
 }
 
 .why-number {
-    font-size: 0.8rem !important;
-    font-weight: 700 !important;
-    color: var(--catamp-yellow) !important;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--catamp-yellow);
 }
 
 .why-card h3 {
-    margin-bottom: 12px !important;
-    font-size: 1.5rem !important;
-    color: var(--white) !important;
+    margin-bottom: 12px;
+    font-size: 1.5rem;
+    color: var(--white);
 }
 
 .why-card p {
-    max-width: 350px !important;
-    margin-bottom: 20px !important;
-    color: #E2E8F0 !important;
-    font-size: 0.9rem !important;
+    max-width: 350px;
+    margin-bottom: 20px;
+    color: #E2E8F0;
+    font-size: 0.9rem;
 }
 
-/* Rutas de imágenes */
-.why-cumplimiento { background-image: url("../img/Cumplimiento\ Garantizado.png") !important; }
-.why-equipo       { background-image: url("../img/Equipo\ Profesional.png") !important; }
-.why-calidad      { background-image: url("../img/Calidad\ y\ Normatividad.png") !important; }
-.why-asesoria     { background-image: url("../img/Asesoría\ Técnica.png") !important; }
-.why-confianza    { background-image: url("../img/Transparencia\ y\ Confianza.png") !important; }
-.why-garantia     { background-image: url("../img/Garantía\ y\ Respaldo.png") !important; }
+/* Rutas imágenes Por Qué Elegirnos */
+.why-cumplimiento {
+    background-image: url("../img/Cumplimiento\ Garantizado.png");
+}
+
+.why-equipo {
+    background-image: url("../img/Equipo\ Profesional.png");
+}
+
+.why-calidad {
+    background-image: url("../img/Calidad\ y\ Normatividad.png");
+}
+
+.why-asesoria {
+    background-image: url("../img/Asesoría\ Técnica.png");
+}
+
+.why-confianza {
+    background-image: url("../img/Transparencia\ y\ Confianza.png");
+}
+
+.why-garantia {
+    background-image: url("../img/Garantía\ y\ Respaldo.png");
+}
+
+/* ==========================================
+   ETIQUETAS DIFERENCIADAS POR SECTOR
+   ========================================== */
+
+.gallery-filters {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    padding: 10px 24px;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: var(--white);
+    border-radius: 30px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.filter-btn:hover,
+.filter-btn.active {
+    background: var(--catamp-yellow);
+    color: var(--dark);
+    border-color: var(--catamp-yellow);
+    box-shadow: 0 4px 14px rgba(253, 185, 19, 0.3);
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+.gallery-card {
+    background: #0B1B3D;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.gallery-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
+}
+
+.gallery-card.hide {
+    display: none !important;
+}
+
+/* Imagen superior de la tarjeta */
+.gallery-img {
+    width: 100%;
+    height: 220px;
+    background-size: cover;
+    background-position: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Contenido inferior */
+.gallery-content {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    justify-content: space-between;
+}
+
+.gallery-tag {
+    display: inline-block;
+    align-self: flex-start;
+    padding: 4px 12px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    border-radius: 4px;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.tag-residencial {
+    background: rgba(253, 185, 19, 0.15);
+    border: 1px solid var(--catamp-yellow);
+    color: var(--catamp-yellow);
+}
+
+.tag-comercial {
+    background: rgba(0, 181, 226, 0.15);
+    border: 1px solid var(--catamp-cyan);
+    color: var(--catamp-cyan);
+}
+
+.tag-industrial {
+    background: rgba(245, 138, 7, 0.15);
+    border: 1px solid var(--catamp-orange);
+    color: var(--catamp-orange);
+}
+
+.gallery-content h3 {
+    font-size: 1.25rem;
+    color: var(--white);
+    margin-bottom: 8px;
+    line-height: 1.3;
+}
+
+.gallery-content p {
+    font-size: 0.9rem;
+    color: #AEB9CA;
+    margin-bottom: 20px;
+    line-height: 1.5;
+}
+
+.btn-cotizar-obra {
+    width: 100%;
+    padding: 12px;
+    font-size: 0.85rem;
+}
 
 
-/* CONTACT */
+/* ==========================================
+   10. CONTACTO
+   ========================================== */
 
 .contact-section {
     padding: 110px 0;
-
-    background:
-        linear-gradient(135deg,
-            var(--catamp-blue-dark),
-            var(--catamp-blue));
-
+    background: linear-gradient(135deg, var(--catamp-blue-dark), var(--catamp-blue));
     color: var(--white);
 }
 
 .contact-content {
     display: grid;
-
     grid-template-columns: 1.2fr 0.8fr;
-
     gap: 80px;
-
     align-items: center;
 }
 
@@ -872,11 +955,8 @@ img {
 
 .contact-section h2 {
     max-width: 700px;
-
     margin-top: 15px;
-
     font-size: clamp(2.5rem, 5vw, 4.5rem);
-
     line-height: 1;
 }
 
@@ -888,32 +968,29 @@ img {
 
 .contact-info p {
     padding-bottom: 20px;
-
     border-bottom: 1px solid rgba(255, 255, 255, 0.16);
 }
 
 .contact-info strong {
     display: block;
-
     margin-bottom: 5px;
-
     color: var(--catamp-yellow);
 }
 
-/* VENTANA MODAL (POP-UP) */
+
+/* ==========================================
+   11. VENTANAS MODALES (FORMULARIO Y SECTORES)
+   ========================================== */
 
 .modal-overlay {
     position: fixed;
     inset: 0;
     z-index: 2000;
-
     display: flex;
     align-items: center;
     justify-content: center;
-
     background: rgba(6, 22, 47, 0.85);
     backdrop-filter: blur(6px);
-
     opacity: 0;
     visibility: hidden;
     transition: all 0.3s ease;
@@ -930,12 +1007,10 @@ img {
     height: fit-content !important;
     min-height: auto !important;
     padding: 35px 28px;
-
     background: #0B1B3D;
     border: 1px solid rgba(255, 255, 255, 0.12);
     border-radius: 16px;
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
-
     color: var(--white);
     transform: translateY(-20px);
     transition: transform 0.3s ease;
@@ -952,7 +1027,6 @@ img {
     position: absolute;
     top: 15px;
     right: 20px;
-
     background: none;
     border: none;
     color: var(--white);
@@ -992,11 +1066,9 @@ img {
 .modal-form textarea {
     width: 100%;
     padding: 12px 14px;
-
     background: rgba(255, 255, 255, 0.07);
     border: 1px solid rgba(255, 255, 255, 0.18);
     border-radius: 6px;
-
     color: var(--white);
     font-size: 0.95rem;
     font-family: inherit;
@@ -1083,13 +1155,78 @@ img {
         opacity: 0;
         transform: translateY(12px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
     }
 }
 
-/* BOTÓN FLOTANTE WHATSAPP */
+/* MODAL ESPECÍFICO DE DETALLES DE SECTOR */
+.modal-sector-content {
+    max-width: 520px !important;
+    text-align: left;
+    gap: 18px;
+}
+
+.sector-detail-header h3 {
+    font-size: 1.8rem;
+    color: var(--white) !important;
+    margin-top: 4px;
+}
+
+.sector-detail-body p {
+    font-size: 0.98rem;
+    color: #C0CCE0 !important;
+    line-height: 1.6;
+    margin-bottom: 16px;
+}
+
+.sector-features h4 {
+    font-size: 0.85rem;
+    color: var(--catamp-yellow);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+}
+
+.sector-features ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.sector-features li {
+    font-size: 0.92rem;
+    color: #E2E8F0;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    line-height: 1.4;
+}
+
+.sector-features li::before {
+    content: "✓";
+    color: var(--catamp-yellow);
+    font-weight: bold;
+    font-size: 1rem;
+    line-height: 1;
+}
+
+.sector-detail-footer {
+    margin-top: 10px;
+}
+
+.sector-detail-footer .btn {
+    width: 100%;
+}
+
+
+/* ==========================================
+   12. ELEMENTOS EXTRA (WHATSAPP & FOOTER)
+   ========================================== */
 
 .whatsapp-btn {
     position: fixed;
@@ -1097,18 +1234,14 @@ img {
     right: 25px;
     z-index: 1500;
     will-change: transform;
-
     display: flex;
     align-items: center;
     justify-content: center;
-
     width: 60px;
     height: 60px;
-
     background-color: #25D366;
     color: #FFFFFF;
     border-radius: 50%;
-
     box-shadow: 0 4px 18px rgba(37, 211, 102, 0.4);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -1118,259 +1251,28 @@ img {
     box-shadow: 0 6px 24px rgba(37, 211, 102, 0.6);
 }
 
-
-/* FOOTER */
-
 .footer {
     padding: 30px 0;
-
     background: #041126;
-
     color: #8793A7;
-
     font-size: 0.8rem;
 }
 
-/* Ocultar el botón hamburguesa en pantallas de escritorio */
-.hamburger-btn {
-    display: none;
-}
 
-
-/* RESPONSIVE */
-
-@media (max-width: 900px) {
-
-    .navigation {
-        display: none;
-    }
-
-    .hero {
-        padding-top: 115px;
-    }
-
-    .hero-content {
-        grid-template-columns: 1fr;
-        gap: 45px;
-    }
-
-    .hero-card {
-        max-width: 280px;
-    }
-
-    .about-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .services-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .sectors-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .contact-content {
-        grid-template-columns: 1fr;
-    }
-
-    .technical-header {
-        grid-template-columns: 1fr;
-        gap: 30px;
-    }
-
-    .technical-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .technical-card:nth-child(2) {
-        border-right: none;
-    }
-
-    .technical-card:nth-child(-n+2) {
-        border-bottom: 1px solid #D1D7DE;
-    }
-
-    .technical-action {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .why-header {
-        grid-template-columns: 1fr;
-        gap: 30px;
-    }
-
-    .why-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .hamburger-btn {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        width: 30px;
-        height: 21px;
-        background: transparent;
-        border: none;
-        cursor: pointer;
-        z-index: 1100;
-    }
-
-    .hamburger-btn span {
-        width: 100%;
-        height: 3px;
-        background-color: var(--white);
-        border-radius: 2px;
-        transition: all 0.3s ease;
-    }
-
-    /* Transformar X al abrir */
-    .hamburger-btn.active span:nth-child(1) {
-        transform: translateY(9px) rotate(45deg);
-    }
-
-    .hamburger-btn.active span:nth-child(2) {
-        opacity: 0;
-    }
-
-    .hamburger-btn.active span:nth-child(3) {
-        transform: translateY(-9px) rotate(-45deg);
-    }
-
-    /* Menú desplegable lateral/superior */
-    .navigation {
-        display: flex !important;
-        flex-direction: column;
-        justify-content: center;
-        position: fixed;
-        top: 0;
-        right: -100%;
-        width: 75%;
-        height: 100vh;
-        background: var(--dark);
-        padding: 40px;
-        gap: 25px;
-        transition: right 0.4s ease;
-        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.5);
-    }
-
-    .navigation.active {
-        right: 0;
-    }
-
-    .navigation a {
-        font-size: 1.2rem;
-    }
-}
-
-
-@media (max-width: 600px) {
-
-    .container {
-        width: min(92%, var(--container));
-    }
-
-    .section {
-        padding: 80px 0;
-    }
-
-.nav {
-        min-height: 75px;
-    }
-
-    .logo {
-        height: 50px;
-    }
-
-    .nav .btn {
-        display: none;
-    }
-
-    .hero {
-        min-height: 850px;
-        padding: 105px 0 60px;
-        background-position: 58% center;
-    }
-
-    .hero h1 {
-        font-size: clamp(2.8rem, 12vw, 4rem);
-        letter-spacing: -1.5px;
-    }
-
-    .hero-text>p {
-        font-size: 1rem;
-    }
-
-    .hero-card {
-        padding: 28px;
-    }
-
-    .experience-number {
-        font-size: 4rem;
-    }
-
-    .stats {
-        grid-template-columns: 1fr;
-    }
-
-    .stat {
-        border-right: none;
-        border-bottom: 1px solid var(--border);
-    }
-
-    .stat:last-child {
-        border-bottom: none;
-    }
-
-    .services-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .technical-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .technical-card {
-        min-height: 250px;
-        border-right: none;
-        border-bottom: 1px solid #D1D7DE;
-    }
-
-    .technical-card:last-child {
-        border-bottom: none;
-    }
-
-    .why-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .why-card {
-        min-height: 250px;
-    }
-
-    .contact-section h2 {
-        font-size: 2.8rem;
-    }
-}
-
-/* ANIMACIONES */
+/* ==========================================
+   13. ANIMACIONES Y TRANSICIONES SCROLL
+   ========================================== */
 
 .hidden {
     opacity: 0;
     transform: translateY(35px);
-    transition:
-        opacity 0.7s ease,
-        transform 0.7s ease;
+    transition: opacity 0.7s ease, transform 0.7s ease;
 }
 
 .show {
     opacity: 1;
     transform: translateY(0);
 }
-
-
-/* ANIMACIÓN ESCALONADA */
 
 .service-card:nth-child(1),
 .technical-card:nth-child(1),
@@ -1407,35 +1309,240 @@ img {
 }
 
 
-/* HEADER AL HACER SCROLL */
+/* ==========================================
+   14. RESPONSIVE MEDIA QUERIES (TABLETS Y MÓVILES)
+   ========================================== */
 
-.header {
-    transition:
-        background 0.3s ease,
-        box-shadow 0.3s ease,
-        backdrop-filter 0.3s ease;
+/* TABLETS (Max-width: 900px) */
+@media (max-width: 900px) {
+
+    .navigation {
+        display: none;
+    }
+
+    .hero {
+        padding-top: 115px;
+    }
+
+    .hero-content {
+        grid-template-columns: 1fr;
+        gap: 45px;
+    }
+
+    .hero-card {
+        max-width: 280px;
+    }
+
+    .about-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .technical-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .sectors-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .why-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .contact-content {
+        grid-template-columns: 1fr;
+    }
+
+    .technical-header {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .why-header {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .technical-action {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .hamburger-btn {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 30px;
+        height: 21px;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        z-index: 1100;
+    }
+
+    .hamburger-btn span {
+        width: 100%;
+        height: 3px;
+        background-color: var(--white);
+        border-radius: 2px;
+        transition: all 0.3s ease;
+    }
+
+    .hamburger-btn.active span:nth-child(1) {
+        transform: translateY(9px) rotate(45deg);
+    }
+
+    .hamburger-btn.active span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .hamburger-btn.active span:nth-child(3) {
+        transform: translateY(-9px) rotate(-45deg);
+    }
+
+    .navigation {
+        display: flex !important;
+        flex-direction: column;
+        justify-content: center;
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 75%;
+        height: 100vh;
+        background: var(--dark);
+        padding: 40px;
+        gap: 25px;
+        transition: right 0.4s ease;
+        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.5);
+    }
+
+    .navigation.active {
+        right: 0;
+    }
+
+    .navigation a {
+        font-size: 1.2rem;
+    }
 }
 
-.header-scrolled {
-    background: rgba(7, 20, 46, 0.97);
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.18);
+/* SMARTPHONES (Max-width: 600px) */
+@media (max-width: 600px) {
+
+    .container {
+        width: min(92%, var(--container));
+    }
+
+    .section {
+        padding: 70px 0;
+    }
+
+    .nav {
+        min-height: 75px;
+    }
+
+    .logo {
+        height: 50px;
+    }
+
+    .nav .btn {
+        display: none;
+    }
+
+    .hero {
+        min-height: 80vh;
+        padding: 105px 0 60px;
+        background-position: 58% center;
+    }
+
+    .hero h1 {
+        font-size: clamp(2.5rem, 10vw, 3.8rem);
+        letter-spacing: -1.5px;
+    }
+
+    .hero-text>p {
+        font-size: 1rem;
+    }
+
+    .hero-card {
+        padding: 28px;
+    }
+
+    .experience-number {
+        font-size: 3.8rem;
+    }
+
+    .stats {
+        grid-template-columns: 1fr;
+    }
+
+    .stat {
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+    }
+
+    .stat:last-child {
+        border-bottom: none;
+    }
+
+    /* GRILLAS EN 1 SOLA COLUMNA PARA MÓVILES */
+    .services-grid,
+    .technical-grid,
+    .sectors-grid,
+    .why-grid {
+        grid-template-columns: 1fr !important;
+        gap: 16px !important;
+        background: transparent !important;
+    }
+
+    /* TARJETAS CON ALTURA Y PROPORCIÓN CÓMODA */
+    .service-card,
+    .technical-card,
+    .sector,
+    .why-card {
+        min-height: 360px !important;
+        border-radius: 12px !important;
+        background-size: cover !important;
+        background-position: center !important;
+    }
+
+    .gallery-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-section h2 {
+        font-size: 2.5rem;
+    }
+
+    /* MODAL EN MÓVILES */
+    .modal-sector-content {
+        padding: 28px 20px !important;
+        gap: 14px !important;
+    }
+
+    .sector-detail-header h3 {
+        font-size: 1.4rem;
+    }
+
+    .sector-detail-body p {
+        font-size: 0.9rem;
+        margin-bottom: 12px;
+    }
+
+    .sector-features li {
+        font-size: 0.85rem;
+    }
 }
 
-
-/* MEJORA DE TARJETAS */
-
-.service-card,
-.technical-card,
-.sector,
-.why-card {
-    will-change: transform;
-}
-
-
-/* RESPETO POR REDUCCIÓN DE MOVIMIENTO */
-
+/* REDUCCIÓN DE MOVIMIENTO */
 @media (prefers-reduced-motion: reduce) {
-
     html {
         scroll-behavior: auto;
     }
@@ -1447,5 +1554,4 @@ img {
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
     }
-
 }
