@@ -254,6 +254,44 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // GALERÍA DE 3 FOTOS EN DISEÑOS ESTRUCTURALES //
+    const galeriaEstructural = [
+        { url: '/static/img/Diseño3.jpeg', label: '1 / 3: Modelo 3D' },
+        { url: '/static/img/Diseños2.jpeg', label: '2 / 3: Análisis de Cargas' },
+        { url: '/static/img/Diseño4.jpeg', label: '3 / 3: Cimentación y Armaduras' }
+    ];
+
+    let indexEstructural = 0;
+
+    const imgEstructural = document.getElementById('imgEstructural');
+    const sliderBadge = document.getElementById('sliderBadge');
+    const btnPrev = document.getElementById('prevImg');
+    const btnNext = document.getElementById('nextImg');
+
+    function actualizarVisualizador(nuevoIndex) {
+        if (!imgEstructural || !sliderBadge) return;
+        imgEstructural.style.opacity = '0.2';
+        setTimeout(() => {
+            imgEstructural.src = galeriaEstructural[nuevoIndex].url;
+            sliderBadge.textContent = galeriaEstructural[nuevoIndex].label;
+            imgEstructural.style.opacity = '1';
+        }, 150);
+    }
+
+    if (btnPrev && btnNext) {
+        btnPrev.addEventListener('click', (e) => {
+            e.stopPropagation();
+            indexEstructural = (indexEstructural === 0) ? galeriaEstructural.length - 1 : indexEstructural - 1;
+            actualizarVisualizador(indexEstructural);
+        });
+
+        btnNext.addEventListener('click', (e) => {
+            e.stopPropagation();
+            indexEstructural = (indexEstructural === galeriaEstructural.length - 1) ? 0 : indexEstructural + 1;
+            actualizarVisualizador(indexEstructural);
+        });
+    }
+
     // LÓGICA DE FILTROS EN GALERÍA //
     const filterBtns = document.querySelectorAll('.filter-btn');
     const galleryCards = document.querySelectorAll('.gallery-card');

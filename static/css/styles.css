@@ -471,9 +471,8 @@ img {
 }
 
 .service-diseno {
-    background-image: url("../img/diseno.jpg");
+    background-image: url("../img/Diseños2.jpeg");
 }
-
 
 /* ==========================================
    7. VISITAS TÉCNICAS
@@ -1307,6 +1306,81 @@ img {
 .why-card:nth-child(6) {
     transition-delay: 0.30s;
 }
+
+/* Configuración para mostrar el software de cálculo completo en la tarjeta 6 */
+.service-diseno {
+  background-image: url('../img/Diseños2.jpeg') !important;
+  background-size: contain !important;
+  background-repeat: no-repeat !important;
+  background-position: center !important;
+  background-color: #040D1A !important; /* Fondo oscuro para integrar los márgenes */
+}
+
+/* Slider interno para la tarjeta de Diseños Estructurales */
+.service-diseno-slider {
+  position: relative;
+  overflow: hidden;
+  background: #040D1A;
+}
+
+.slider-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.slider-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* Garantiza que las 3 imágenes se vean completas */
+  transition: opacity 0.3s ease;
+}
+
+.slider-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(6, 22, 47, 0.8);
+  color: #00B5E2;
+  border: 1px solid rgba(0, 181, 226, 0.4);
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
+.slider-arrow:hover {
+  background: #00B5E2;
+  color: #FFFFFF;
+}
+
+.arrow-left { left: 10px; }
+.arrow-right { right: 10px; }
+
+.slider-badge {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  background: rgba(6, 22, 47, 0.85);
+  color: #AEB9CA;
+  font-size: 0.72rem;
+  padding: 3px 8px;
+  border-radius: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  z-index: 10;
+}
+
+
 
 
 /* ==========================================
