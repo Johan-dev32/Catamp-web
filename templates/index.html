@@ -354,6 +354,16 @@
                 </div>
               </div>
             </article>
+
+            <article class="why-card why-garantia">
+              <div class="card-overlay">
+                <span class="why-number">06</span>
+                <div>
+                  <h3>Garantía y Respaldo</h3>
+                  <p>Acompañamiento post-entrega y respaldo técnico continuo para garantizar la durabilidad de cada obra.</p>
+                </div>
+              </div>
+            </article>
           </div>
         </div>
       </section>
@@ -385,7 +395,17 @@
                     <span class="gallery-tag tag-{{ proyecto.sector }}">{{ proyecto.sector|capitalize }}</span>
                     <h3>{{ proyecto.titulo }}</h3>
                     <p>{{ proyecto.descripcion }}</p>
+
                     <button class="btn btn-primary btn-cotizar-obra" data-proyecto="{{ proyecto.titulo }}">Cotizar proyecto similar</button>
+
+                    <!-- BOTONES EXCLUSIVOS DE ADMINISTRADOR -->
+                    {% if session.get('es_admin') %}
+                      <div style="display: flex; gap: 8px; margin-top: 12px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 10px;">
+                        <button type="button" class="btn-editar-proyecto" data-id="{{ proyecto.id }}" data-titulo="{{ proyecto.titulo }}" data-descripcion="{{ proyecto.descripcion }}" data-categoria="{{ proyecto.sector }}" style="flex: 1; background: #00B5E2; color: white; border: none; padding: 8px; border-radius: 4px; font-size: 0.8rem; font-weight: 600; cursor: pointer;">Editar</button>
+
+                        <button type="button" class="btn-eliminar-proyecto" data-id="{{ proyecto.id }}" style="flex: 1; background: #EF4444; color: white; border: none; padding: 8px; border-radius: 4px; font-size: 0.8rem; font-weight: 600; cursor: pointer;">Eliminar</button>
+                      </div>
+                    {% endif %}
                   </div>
                 </article>
               {% endfor %}
@@ -430,6 +450,48 @@
               </div>
 
               <button type="submit" class="btn btn-primary" style="margin-top: 10px;">Publicar en Galería</button>
+            </form>
+          </div>
+        </div>
+
+        <!-- MODAL PARA EDITAR PROYECTO (PROTEGIDO ADMIN) -->
+        <div id="modalEditarProyecto" class="modal-overlay">
+          <div class="modal-content" style="max-width: 500px;">
+            <button class="modal-close" id="btnCerrarEditarProyecto">&times;</button>
+
+            <div class="modal-header">
+              <span class="eyebrow">PANEL ADMINISTRADOR</span>
+              <h2>Editar Proyecto</h2>
+            </div>
+
+            <form id="formEditarProyecto" enctype="multipart/form-data" style="display: flex; flex-direction: column; gap: 15px; margin-top: 20px;">
+              <input type="hidden" id="editarProyectoId" name="id" />
+
+              <div>
+                <label style="display: block; font-size: 0.85rem; color: #AEB9CA; margin-bottom: 4px;">Título del Proyecto:</label>
+                <input type="text" id="editarTitulo" name="titulo" required style="width: 100%; padding: 12px; background: #06162F; border: 1px solid rgba(255,255,255,0.15); color: white; border-radius: 6px; box-sizing: border-box;" />
+              </div>
+
+              <div>
+                <label style="display: block; font-size: 0.85rem; color: #AEB9CA; margin-bottom: 4px;">Sector / Categoría:</label>
+                <select id="editarCategoria" name="sector" required style="width: 100%; padding: 12px; background: #06162F; border: 1px solid rgba(255,255,255,0.15); color: white; border-radius: 6px; box-sizing: border-box;">
+                  <option value="residencial">Residencial</option>
+                  <option value="comercial">Comercial</option>
+                  <option value="industrial">Industrial</option>
+                </select>
+              </div>
+
+              <div>
+                <label style="display: block; font-size: 0.85rem; color: #AEB9CA; margin-bottom: 4px;">Descripción:</label>
+                <textarea id="editarDescripcion" name="descripcion" rows="3" required style="width: 100%; padding: 12px; background: #06162F; border: 1px solid rgba(255,255,255,0.15); color: white; border-radius: 6px; resize: none; box-sizing: border-box;"></textarea>
+              </div>
+
+              <div>
+                <label style="display: block; font-size: 0.85rem; color: #AEB9CA; margin-bottom: 4px;">Cambiar Imagen (Opcional):</label>
+                <input type="file" id="editarImagen" name="imagen" accept="image/png, image/jpeg, image/jpg, image/webp" style="color: white; font-size: 0.9rem;" />
+              </div>
+
+              <button type="submit" class="btn btn-primary" style="margin-top: 10px;">Guardar Cambios</button>
             </form>
           </div>
         </div>
@@ -528,12 +590,54 @@
       </a>
     </main>
 
+    <!-- FOOTER SENCILLO -->
     <footer class="footer">
-      <div class="container">
-        <p>© 2026 CATAMP S.A.S. — Ingeniería y Obra Civil</p>
+      <div class="container footer-container">
+        <div class="footer-info">
+          <h4>CATAMP S.A.S.</h4>
+          <p>Ingeniería y Obra Civil — Soluciones integrales para los sectores residencial, comercial e industrial.</p>
+        </div>
+
+        <div class="footer-links">
+          <h4>Navegación</h4>
+          <ul>
+            <li>
+              <a href="#inicio">Inicio</a>
+            </li>
+            <li>
+              <a href="#nosotros">Nosotros</a>
+            </li>
+            <li>
+              <a href="#servicios">Servicios</a>
+            </li>
+            <li>
+              <a href="#experiencia">Experiencia</a>
+            </li>
+            <li>
+              <a href="#galeria">Galería</a>
+            </li>
+            <li>
+              <a href="#contacto">Contacto</a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="footer-contact">
+          <h4>Contacto</h4>
+          <p>📍 Bogotá, Colombia</p>
+          <p>📞 +57 311 846 87 07 / +57 321 330 17 25</p>
+          <p>✉️ catampingenieriaobracivil@gmail.com</p>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div class="container footer-bottom-content">
+          <p>© 2026 CATAMP S.A.S. — Todos los derechos reservados.</p>
+          <p>Bogotá, Colombia</p>
+        </div>
       </div>
     </footer>
 
-    <script src="{{ url_for('static', filename='js/script.js') }}?v=2"></script>
+    <script src="{{ url_for('static', filename='js/script.js') }}?v=3"></script>
   </body>
 </html>

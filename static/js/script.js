@@ -257,7 +257,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // GALERÍA DE 3 FOTOS EN DISEÑOS ESTRUCTURALES //
     const galeriaEstructural = [
         { url: '/static/img/Diseño3.jpeg', label: '1 / 3: Modelo 3D' },
-        { url: '/static/img/Diseños2.jpeg', label: '2 / 3: Análisis de Cargas' },
+        { url: '/static/img/Diseños2_2.jpeg', label: '2 / 3: Análisis de Cargas' },
         { url: '/static/img/Diseño4.jpeg', label: '3 / 3: Cimentación y Armaduras' }
     ];
 
@@ -390,6 +390,115 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // ADMINISTRACIÓN DE GALERÍA (ELIMINAR Y EDITAR) //
+
+    // 1. ELIMINAR PROYECTO
+    const btnsEliminarProyecto = document.querySelectorAll('.btn-eliminar-proyecto');
+
+    btnsEliminarProyecto.forEach(btn => {
+        btn.addEventListener('click', async (e) => {
+            e.preventDefault();
+            const idProyecto = btn.getAttribute('data-id');
+
+            if (!confirm('¿Estás seguro de que deseas eliminar este proyecto de la galería? Esta acción no se puede deshacer.')) {
+                return;
+            }
+
+            try {
+                const response = await fetch(`/api/galeria/eliminar/${idProyecto}`, {
+                    method: 'DELETE'
+                });
+
+                const resultado = await response.json();
+
+                if (response.ok) {
+                    alert('Proyecto eliminado exitosamente.');
+                    window.location.reload();
+                } else {
+                    alert('Error al eliminar: ' + resultado.message);
+                }
+            } catch (error) {
+                alert('Ocurrió un problema de conexión al intentar eliminar el proyecto.');
+            }
+        });
+    });
+
+    // 2. EDITAR PROYECTO
+    const modalEditarProyecto = document.getElementById('modalEditarProyecto');
+    const formEditarProyecto = document.getElementById('formEditarProyecto');
+    const btnCerrarEditarProyecto = document.getElementById('btnCerrarEditarProyecto');
+    const btnsEditarProyecto = document.querySelectorAll('.btn-editar-proyecto');
+
+    btnsEditarProyecto.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            const idProyecto = btn.getAttribute('data-id');
+            const titulo = btn.getAttribute('data-titulo');
+            const descripcion = btn.getAttribute('data-descripcion');
+            const categoria = btn.getAttribute('data-categoria');
+
+            const inputId = document.getElementById('editarProyectoId');
+            const inputTitulo = document.getElementById('editarTitulo');
+            const inputDescripcion = document.getElementById('editarDescripcion');
+            const selectCategoria = document.getElementById('editarCategoria');
+
+            if (inputId) inputId.value = idProyecto;
+            if (inputTitulo) inputTitulo.value = titulo;
+            if (inputDescripcion) inputDescripcion.value = descripcion;
+            if (selectCategoria) selectCategoria.value = categoria;
+
+            if (modalEditarProyecto) {
+                modalEditarProyecto.classList.add('active');
+            }
+        });
+    });
+
+    if (formEditarProyecto) {
+        formEditarProyecto.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const idProyecto = document.getElementById('editarProyectoId').value;
+            const formData = new FormData(formEditarProyecto);
+            const btnSubmit = formEditarProyecto.querySelector('button[type="submit"]');
+
+            if (btnSubmit) {
+                btnSubmit.disabled = true;
+                btnSubmit.textContent = 'Guardando cambios...';
+            }
+
+            try {
+                const response = await fetch(`/api/galeria/editar/${idProyecto}`, {
+                    method: 'PUT',
+                    body: formData
+                });
+
+                const resultado = await response.json();
+
+                if (response.ok) {
+                    alert('Proyecto actualizado correctamente.');
+                    formEditarProyecto.reset();
+                    if (modalEditarProyecto) modalEditarProyecto.classList.remove('active');
+                    window.location.reload();
+                } else {
+                    alert('Error al actualizar: ' + resultado.message);
+                }
+            } catch (error) {
+                alert('Ocurrió un error al actualizar el proyecto.');
+            } finally {
+                if (btnSubmit) {
+                    btnSubmit.disabled = false;
+                    btnSubmit.textContent = 'Guardar Cambios';
+                }
+            }
+        });
+    }
+
+    if (btnCerrarEditarProyecto && modalEditarProyecto) {
+        btnCerrarEditarProyecto.addEventListener('click', () => {
+            modalEditarProyecto.classList.remove('active');
+        });
+    }
+
     // Cierre de modales al hacer clic fuera del contenido
     window.addEventListener('click', (e) => {
         if (e.target === modalContacto) {
@@ -401,6 +510,9 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         if (e.target === modalSubirProyecto) {
             modalSubirProyecto.classList.remove('active');
+        }
+        if (modalEditarProyecto && e.target === modalEditarProyecto) {
+            modalEditarProyecto.classList.remove('active');
         }
     });
 });

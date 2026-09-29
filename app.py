@@ -252,5 +252,80 @@ def agregar_proyecto_galeria():
         return jsonify({'status': 'error', 'message': f'Error al guardar proyecto: {str(e)}'}), 500
 
 
+# ELIMINAR UN PROYECTO DE LA GALERÍA (SOLO ADMIN)
+@app.route('/api/galeria/eliminar/<int:proyecto_id>', methods=['DELETE'])
+def eliminar_proyecto(proyecto_id):
+    if not session.get('es_admin'):
+        return jsonify({'status': 'error', 'message': 'Acceso no autorizado'}), 401
+
+    try:
+        proyecto = ProyectoGaleria.query.get(proyecto_id)
+        if not proyecto:
+            return jsonify({'status': 'error', 'message': 'El proyecto no existe'}), 4404
+
+        # Eliminar imagen física del servidor si existe
+        ruta_imagen = os.path.join(app.config['UPLOAD_FOLDER'], proyecto.imagen_filename)
+        if os.path.exists(ruta_imagen):
+            os.remove(ruta_imagen)
+
+        db.session.delete(proyecto)
+        db.session.commit()
+        return jsonify({'status': 'success', 'message': 'Proyecto eliminado correctamente'}), 200
+
+    except Exception as e:
+        db.session.rollback()
+        return jsonify({'status': 'error', 'message': f'Error al eliminar: {str(e)}'}), 500
+
+
+# EDITAR / ACTUALIZAR UN PROYECTO (SOLO ADMIN)
+@app.route('/api/galeria/editar/<int:proyecto_id>', methods=['PUT'])
+def editar_proyecto(proyecto_id):
+    if not session.get('es_admin'):
+        return jsonify({'status': 'error', 'message': 'Acceso no autorizado'}), 401
+
+    try:
+        proyecto = ProyectoGaleria.query.get(proyecto_id)
+        if not proyecto:
+            return jsonify({'status': 'error', 'message': 'El proyecto no existe'}), 404
+
+        titulo = request.form.get('titulo')
+        sector = request.form.get('sector')
+        descripcion = request.form.get('descripcion')
+        imagen = request.files.get('imagen')
+
+        if titulo:
+            proyecto.titulo = titulo
+        if sector:
+            proyecto.sector = sector.lower()
+        if descripcion:
+            proyecto.descripcion = descripcion
+
+        # Si subieron una nueva imagen para reemplazar la anterior
+        if imagen and imagen.filename != '':
+            if not es_imagen_permitida(imagen.filename):
+                return jsonify({'status': 'error', 'message': 'Formato de imagen no soportado'}), 400
+
+            # Eliminar la foto antigua
+            ruta_antigua = os.path.join(app.config['UPLOAD_FOLDER'], proyecto.imagen_filename)
+            if os.path.exists(ruta_antigua):
+                os.remove(ruta_antigua)
+
+            # Guardar la foto nueva
+            ext = imagen.filename.rsplit('.', 1)[1].lower()
+            nombre_limpio = secure_filename(imagen.filename.rsplit('.', 1)[0])
+            nombre_unico = f"{uuid.uuid4().hex[:10]}_{nombre_limpio}.{ext}"
+
+            ruta_completa = os.path.join(app.config['UPLOAD_FOLDER'], nombre_unico)
+            imagen.save(ruta_completa)
+            proyecto.imagen_filename = nombre_unico
+
+        db.session.commit()
+        return jsonify({'status': 'success', 'message': 'Proyecto actualizado correctamente'}), 200
+
+    except Exception as e:
+        db.session.rollback()
+        return jsonify({'status': 'error', 'message': f'Error al actualizar: {str(e)}'}), 500
+
+
 if __name__ == '__main__':
     app.run(debug=True, port=5000)
